@@ -1,6 +1,6 @@
 .main-div {
     background: #ffffff;
-    height: 100%;
+    height: 96vh;
     width: 100%;
     background-image: url('/resource/mtp_Timesheet_bg_image');
     background-size: 100% 47%;
@@ -27,4 +27,103 @@
     text-align: center;
     color: #000000;
     margin-top: 10px;
+}
+
+.timehseet-disply-div {
+    height: 70%;
+    width: 100%;
+    bottom: 0;
+    position: fixed;
+    text-align: -webkit-center;
+}
+
+.blank-div {
+    height: 20%;
+}
+
+.timesheet-block-div {
+    /* background: #EDEAEA; */
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    height: 25%;
+    width: 80%;
+    display: flex;
+}
+
+.ts-left-div {
+    background: #EDEAEA;
+    width: 70%;
+    display: flex;
+}
+
+.ts-date {
+    width: 20%;
+}
+
+.cal-icon {
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tsk-dte {}
+
+.ts-dtl {
+    width: 20%;
+}
+
+.ts-time {
+    width: 45%;
+}
+
+.ts-ttl-time {
+    width: 15%;
+}
+
+.ts-right-div {
+    background: #EDEAEA;
+    width: 30%;
+    display: flex;
+}
+
+.ts-aprvr-cmnt {
+    width: 65%;
+    padding-inline: 5%;
+}
+
+.txt-cmnt-div {
+    height: 25%;
+}
+
+.ts-actn {
+    width: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.txt {
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: left;
+    color: #000000;
+}
+
+.ts-aprv {
+    width: 50%;
+}
+
+.ts-rjct {
+    width: 50%;
+}
+
+.crcle {
+    /* position: absolute; */
+    display: block;
+    width: 2em;
+    height: 2em;
+    background: #fff;
+    border-radius: 50%;
+    left: -.5em;
 }

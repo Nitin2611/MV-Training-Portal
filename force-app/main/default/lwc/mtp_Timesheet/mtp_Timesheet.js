@@ -7,12 +7,12 @@ import mtp_Airplane_EndTime_icon from '@salesforce/resourceUrl/mtp_Airplane_EndT
 import mtp_Calendar_icon from '@salesforce/resourceUrl/mtp_Calendar_icon';
 
 export default class Mtp_Timesheet extends LightningElement {
-    bgImage = mtp_Timesheet_bg_image;
-    approveIcon = mtp_Approve_icon;
-    rejectIcon = mtp_Reject_icon;
-    startTimeIcon = mtp_Airplane_StartTime_icon;
-    endTimeIcon = mtp_Airplane_EndTime_icon;
-    calendarIcon = mtp_Calendar_icon;
+    bgImage = mtp_Timesheet_bg_image;                       // background-image of timesheet component
+    approveIcon = mtp_Approve_icon;                         // approve icon for timesheet
+    rejectIcon = mtp_Reject_icon;                           // reject icon for timesheet 
+    startTimeIcon = mtp_Airplane_StartTime_icon;            // start time (airplane) icon for timesheet
+    endTimeIcon = mtp_Airplane_EndTime_icon;                // end time (airplane) icon for timesheet
+    calendarIcon = mtp_Calendar_icon;                       // calendar icon for timesheet
 
 
 }

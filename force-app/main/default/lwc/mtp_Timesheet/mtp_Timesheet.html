@@ -6,5 +6,39 @@
                 <div class="ttl-msg">Manage your daily tasks by filling the timesheet</div>
             </div>
         </div>
+        <div class="timehseet-disply-div">
+            <div class="blank-div"></div>
+            <div class="timesheet-block-div">
+                <div class="ts-left-div">
+                    <div class="ts-date">
+                        <div class="cal-icon">
+                            <img src={calendarIcon} alt="calendar icon" title="Task Date">
+                        </div>
+                        <div class="tsk-dte"></div>
+                    </div>
+                    <div class="ts-dtl">1</div>
+                    <div class="ts-time">2</div>
+                    <div class="ts-ttl-time">3</div>
+                </div>
+                <div class="ts-right-div">
+                    <!-- <div class="crcle"></div> -->
+                    <div class="ts-aprvr-cmnt">
+                        <div class="txt-cmnt-div">
+                            <p class="txt">Comments</p>
+                        </div>
+                        <lightning-textarea name="commentsBox" variant="label-hidden" placeholder="Type">
+                        </lightning-textarea>
+                    </div>
+                    <div class="ts-actn">
+                        <div class="ts-aprv">
+                            <img src={approveIcon} alt="Approve" title="Approve Timesheet">
+                        </div>
+                        <div class="ts-rjct">
+                            <img src={rejectIcon} alt="Reject" title="Reject Timesheet">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
