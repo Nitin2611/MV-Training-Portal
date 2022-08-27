@@ -1,0 +1,30 @@
+.main-div {
+    background: #ffffff;
+    height: 100%;
+    width: 100%;
+    background-image: url('/resource/mtp_Timesheet_bg_image');
+    background-size: 100% 47%;
+    background-repeat: no-repeat;
+}
+
+.top-title-div {
+    height: 20%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.ttl-hdr {
+    font-weight: 600;
+    font-size: 2rem;
+    text-align: center;
+    color: #000000;
+}
+
+.ttl-msg {
+    font-weight: 400;
+    font-size: 1rem;
+    text-align: center;
+    color: #000000;
+    margin-top: 10px;
+}
