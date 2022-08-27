@@ -58,6 +58,7 @@
 
 .ts-date {
     width: 20%;
+    padding-inline: 2%;
 }
 
 .cal-icon {
@@ -67,15 +68,61 @@
     justify-content: center;
 }
 
-.tsk-dte {}
+.tsk-dte {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30%;
+}
 
 .ts-dtl {
     width: 20%;
+    padding-inline: 2%;
+}
+
+.tsk-cmnt {
+    margin-top: 5%;
 }
 
 .ts-time {
     width: 45%;
+    padding-inline: 2%;
 }
+
+.round-trip {
+    border-radius: 50%;
+    position: absolute;
+    /* left: 50%; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    height: 50px;
+    width: 50px;
+}
+
+.start-plane {
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #02ACE1;
+    height: 40px;
+    width: 40px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 .ts-ttl-time {
     width: 15%;
@@ -83,6 +130,7 @@
 
 .ts-right-div {
     background: #EDEAEA;
+    border-radius: 5px;
     width: 30%;
     display: flex;
 }
@@ -94,6 +142,8 @@
 
 .txt-cmnt-div {
     height: 25%;
+    align-items: center;
+    display: flex;
 }
 
 .ts-actn {
@@ -101,6 +151,55 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.dsply-ttl-tme-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+}
+
+.dsply-ttl-tme {
+    background: #FFFFFF;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 90%;
+}
+
+.tsk-dtl {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    height: 25%;
+}
+
+.start-end-time {
+    background: #FFFFFF;
+    border-radius: 5px;
+    height: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.tme-header {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    height: 25%;
+}
+
+.ttl-tme {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    height: 25%;
 }
 
 .txt {

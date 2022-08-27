@@ -14,11 +14,46 @@
                         <div class="cal-icon">
                             <img src={calendarIcon} alt="calendar icon" title="Task Date">
                         </div>
-                        <div class="tsk-dte"></div>
+                        <div class="tsk-dte">
+                            <lightning-input type="date" name="timesheetDate" variant="label-hidden"></lightning-input>
+                            <!-- <lightning-input type="text" name="timesheetDate" variant="label-hidden"></lightning-input> -->
+                        </div>
                     </div>
-                    <div class="ts-dtl">1</div>
-                    <div class="ts-time">2</div>
-                    <div class="ts-ttl-time">3</div>
+                    <div class="ts-dtl">
+                        <div class="tsk-dtl">
+                            <p class="txt">Task Details</p>
+                        </div>
+                        <div class="tsk-pck">
+                            <lightning-combobox name="tasks" variant="label-hidden" value={value} placeholder="Tasks"
+                                options={options} onchange={handleChange}></lightning-combobox>
+                        </div>
+                        <div class="tsk-cmnt">
+                            <lightning-textarea name="taskCommentsBox" variant="label-hidden" placeholder="Comment">
+                            </lightning-textarea>
+                        </div>
+                    </div>
+                    <div class="ts-time">
+                        <div class="tme-header">
+                            <p class="txt">Time</p>
+                        </div>
+                        <div class="start-end-time">
+                            <div class="start-plane">
+                                <img src={startTimeIcon} alt="startTimeIcon">
+                            </div>
+                            <div>
+                                <p>Start Time</p>
+                            </div>
+                            <!-- <div class="round-trip"></div> -->
+                        </div>
+                    </div>
+                    <div class="ts-ttl-time">
+                        <div class="ttl-tme">
+                            <p class="txt">Total Time</p>
+                        </div>
+                        <div class="dsply-ttl-tme-div">
+                            <div class="dsply-ttl-tme">00-00-00</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="ts-right-div">
                     <!-- <div class="crcle"></div> -->
