@@ -37,11 +37,23 @@
                             <p class="txt">Time</p>
                         </div>
                         <div class="start-end-time">
-                            <div class="start-plane">
-                                <img src={startTimeIcon} alt="startTimeIcon">
+                            <div>
+                                <div class="start-plane">
+                                    <img src={startTimeIcon} alt="startTimeIcon">
+                                </div>
+                                <div>
+                                    <p>Start Time</p>
+                                    <lightning-input type="time" name="startTime" variant="label-hidden"></lightning-input>
+                                </div>
                             </div>
                             <div>
-                                <p>Start Time</p>
+                                <div class="start-plane">
+                                    <img src={endTimeIcon} alt="endTimeIcon">
+                                </div>
+                                <div>
+                                    <p>End Time</p>
+                                    <lightning-input type="time" name="endTime" variant="label-hidden"></lightning-input>
+                                </div>
                             </div>
                             <!-- <div class="round-trip"></div> -->
                         </div>
