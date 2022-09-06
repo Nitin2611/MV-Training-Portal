@@ -27,7 +27,7 @@ public without sharing class mtp_TimesheetController {
         List<mtp_Timesheet__c> timesheetDataList = new List<mtp_Timesheet__c>();
 
         try {
-            timesheetDataList = [SELECT Id, Name, Start_Time__c, End_Time__c, Status__c, Comments__c, mtp_Task__c, Course__c, User__c FROM mtp_Timesheet__c WHERE User__c =: UserInfo.getUserId()];
+            timesheetDataList = [SELECT Id, CreatedDate, Name, Start_Time__c, End_Time__c, Status__c, Comments__c, mtp_Task__c, mtp_Task__r.Name, Course__c, User__c FROM mtp_Timesheet__c WHERE User__c =: UserInfo.getUserId()];
             // timesheetDataList = [SELECT Id, Name, Start_Time__c, End_Time__c, Status__c, Comments__c, mtp_Task__c, Course__c, User__c FROM mtp_Timesheet__c];
 
             return timesheetDataList;

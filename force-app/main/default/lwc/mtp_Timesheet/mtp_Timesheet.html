@@ -43,7 +43,8 @@
                                 </div>
                                 <div>
                                     <p>Start Time</p>
-                                    <lightning-input type="time" name="startTime" variant="label-hidden"></lightning-input>
+                                    <lightning-input type="time" name="startTime" variant="label-hidden">
+                                    </lightning-input>
                                 </div>
                             </div>
                             <div>
@@ -52,7 +53,8 @@
                                 </div>
                                 <div>
                                     <p>End Time</p>
-                                    <lightning-input type="time" name="endTime" variant="label-hidden"></lightning-input>
+                                    <lightning-input type="time" name="endTime" variant="label-hidden">
+                                    </lightning-input>
                                 </div>
                             </div>
                             <!-- <div class="round-trip"></div> -->
@@ -86,6 +88,99 @@
                     </div>
                 </div>
             </div>
+
+
+            <template for:each={timesheetDataList} for:item="ts">
+                <div class="timesheet-block-div" key={ts.Id}>
+                    <div class="ts-left-div">
+                        <div class="ts-date">
+                            <div class="cal-icon">
+                                <img src={calendarIcon} alt="calendar icon" title="Task Date">
+                            </div>
+                            <div class="tsk-dte">
+                                <!-- <lightning-input type="date" name="timesheetDate" variant="label-hidden">
+                                </lightning-input> -->
+                                <lightning-input type="text" name="timesheetDate" variant="label-hidden"
+                                    value={ts.CreatedDate}>
+                                </lightning-input>
+                            </div>
+                        </div>
+                        <div class="ts-dtl">
+                            <div class="tsk-dtl">
+                                <p class="txt">Task Details</p>
+                            </div>
+                            <div class="tsk-pck">
+                                <!-- <lightning-combobox name="tasks" variant="label-hidden" value={value}
+                                    placeholder="Tasks" options={options} onchange={handleChange}></lightning-combobox> -->
+                                <lightning-input type="text" name="tasks" variant="label-hidden"
+                                    value={ts.mtp_Task__r.Name}>
+                                </lightning-input>
+                            </div>
+                            <div class="tsk-cmnt">
+                                <lightning-textarea name="taskCommentsBox" variant="label-hidden" placeholder="Comment"
+                                    value={ts.Comments__c}>
+                                </lightning-textarea>
+                            </div>
+                        </div>
+                        <div class="ts-time">
+                            <div class="tme-header">
+                                <p class="txt">Time</p>
+                            </div>
+                            <div class="start-end-time">
+                                <div>
+                                    <div class="start-plane">
+                                        <img src={startTimeIcon} alt="startTimeIcon">
+                                    </div>
+                                    <div>
+                                        <p>Start Time</p>
+                                        <lightning-input type="time" name="startTime" variant="label-hidden">
+                                        </lightning-input>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="start-plane">
+                                        <img src={endTimeIcon} alt="endTimeIcon">
+                                    </div>
+                                    <div>
+                                        <p>End Time</p>
+                                        <lightning-input type="time" name="endTime" variant="label-hidden">
+                                        </lightning-input>
+                                    </div>
+                                </div>
+                                <!-- <div class="round-trip"></div> -->
+                            </div>
+                        </div>
+                        <div class="ts-ttl-time">
+                            <div class="ttl-tme">
+                                <p class="txt">Total Time</p>
+                            </div>
+                            <div class="dsply-ttl-tme-div">
+                                <div class="dsply-ttl-tme">00-00-00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ts-right-div">
+                        <!-- <div class="crcle"></div> -->
+                        <div class="ts-aprvr-cmnt">
+                            <div class="txt-cmnt-div">
+                                <p class="txt">Comments</p>
+                            </div>
+                            <lightning-textarea name="commentsBox" variant="label-hidden" placeholder="Type">
+                            </lightning-textarea>
+                        </div>
+                        <div class="ts-actn">
+                            <div class="ts-aprv">
+                                <img src={approveIcon} alt="Approve" title="Approve Timesheet">
+                            </div>
+                            <div class="ts-rjct">
+                                <img src={rejectIcon} alt="Reject" title="Reject Timesheet">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
         </div>
+
     </div>
 </template>
