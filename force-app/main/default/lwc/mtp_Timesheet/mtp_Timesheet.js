@@ -7,6 +7,8 @@ import mtp_Airplane_EndTime_icon from '@salesforce/resourceUrl/mtp_Airplane_EndT
 import mtp_Calendar_icon from '@salesforce/resourceUrl/mtp_Calendar_icon';
 
 import getTimesheetData from '@salesforce/apex/mtp_TimesheetController.getTimesheetData';
+import getTaskList from '@salesforce/apex/mtp_TimesheetController.getTaskList';
+import createTimesheetRecord from '@salesforce/apex/mtp_TimesheetController.createTimesheetRecord';
 export default class Mtp_Timesheet extends LightningElement {
     bgImage = mtp_Timesheet_bg_image;                       // background-image of timesheet component
     approveIcon = mtp_Approve_icon;                         // approve icon for timesheet
@@ -16,39 +18,119 @@ export default class Mtp_Timesheet extends LightningElement {
     calendarIcon = mtp_Calendar_icon;                       // calendar icon for timesheet
 
     @track timesheetDataList = [];
+    @track taskOptionList = [];
     @track isCreateTimesheetModalOpen = false;
+
+    @track tsTask = '';
+    @track tsStartTime = '';
+    @track tsEndTime = '';
+    @track tsComments = '';
+
 
     connectedCallback() {
         try {
+            this.getTimesheetList();
+            this.getTaskOptionList();
+        } catch (error) {
+            console.log({ error });
+        }
+    }
 
+    getTimesheetList() {
+        try {
             getTimesheetData()
                 .then(result => {
                     this.timesheetDataList = result;
                     console.log("timesheetDataList ==>");
                     console.log({ result });
-
                 })
                 .catch(error => {
                     console.log({ error });
                 });
+        } catch (error) {
+            console.log({ error });
+        }
+    }
+
+    getTaskOptionList() {
+        try {
+            let options = [];
+            getTaskList()
+                .then(result => {
+                    console.log("taskList ==>");
+                    console.log({ result });
+                    for (var key in result) {
+                        var splitString = result[key].split(':::');
+                        options.push({ label: splitString[0], value: splitString[1] });
+                    }
+                    this.taskOptionList = options;
+                })
+                .catch(error => {
+                    console.log({ error });
+                });
+        } catch (error) {
+            console.log({ error });
+        }
+    }
+
+    openTimesheetModal() {
+        try {
+            console.log("Timesheet popup modal open");
+            this.isCreateTimesheetModalOpen = true;
+        } catch (error) {
+            console.log({ error });
+        }
+    }
+
+    closeTimesheetModal() {
+        try {
+            console.log("Timesheet popup modal closed");
+            this.isCreateTimesheetModalOpen = false;
+        } catch (error) {
+            console.log({ error });
+        }
+    }
+
+    handleChangePopup(event) {
+        try {
+            if (event.target.name == 'PopupModalTask') {
+                this.tsTask = event.target.value;
+                console.log("task Name ==>" + this.tsTask);
+            } else if (event.target.name == 'PopupModalStartTime') {
+                this.tsStartTime = event.target.value;
+
+
+            } else if (event.target.name == 'PopupModalEndTime') {
+                this.tsEndTime = event.target.value;
+                console.log("End Time ==>" + this.tsEndTime);
+            } else if (event.target.name == 'PopupModalComments') {
+                this.tsComments = event.target.value;
+                console.log("Comments ==>" + this.tsComments);
+            }
 
         } catch (error) {
             console.log({ error });
         }
     }
 
-    openTimesheetModal(){
-        console.log("Timesheet popup modal open");
-        this.isCreateTimesheetModalOpen = true;
-    }
-
-    closeTimesheetModal(){
-        console.log("Timesheet popup modal closed");
-        this.isCreateTimesheetModalOpen = false;
-    }
-
-    createTimesheet(){
-        console.log("Create timesheet called");
-        
+    createTimesheet() {
+        try {
+            console.log("Create timesheet called");
+            createTimesheetRecord({
+                taskId: this.tsTask,
+                startTime: this.tsStartTime,
+                endTime: this.tsEndTime,
+                comments: this.tsComments
+            })
+                .then(result => {
+                    console.log("createTimesheet Result ==>");
+                    console.log({ result });
+                })
+                .catch(error => {
+                    console.log({ error });
+                });
+        } catch (error) {
+            console.log({ error });
+        }
     }
 }

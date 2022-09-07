@@ -192,7 +192,7 @@
             class="slds-modal slds-fade-in-open">
             <div class="slds-modal__container">
                 <div class="slds-modal__header popup-header">
-                    <h1>Create Timesheet</h1>
+                    <h1>Timesheet Details</h1>
                 </div>
                 <div class="slds-modal__content slds-p-around_medium modal-body" id="modal-content-id-2">
 
@@ -202,8 +202,8 @@
                         </div>
                         <div class="slds-col slds-size_1-of-12 pm-cl"><span>:</span></div>
                         <div class="slds-col slds-size_8-of-12">
-                            <lightning-combobox name="task" variant="label-hidden" value={value}
-                                placeholder="Select Task" options={options} onchange={handleChange}>
+                            <lightning-combobox name="PopupModalTask" variant="label-hidden" placeholder="Select Task"
+                                options={taskOptionList} onchange={handleChangePopup}>
                             </lightning-combobox>
                         </div>
                     </div>
@@ -214,7 +214,9 @@
                         </div>
                         <div class="slds-col slds-size_1-of-12 pm-cl"><span>:</span></div>
                         <div class="slds-col slds-size_8-of-12">
-                            <lightning-input type="datetime" name="Starttime" variant="label-hidden"></lightning-input>
+                            <lightning-input type="datetime" name="PopupModalStartTime" variant="label-hidden"
+                                onchange={handleChangePopup} value={testSD}>
+                            </lightning-input>
                         </div>
                     </div>
 
@@ -224,7 +226,9 @@
                         </div>
                         <div class="slds-col slds-size_1-of-12 pm-cl"><span>:</span></div>
                         <div class="slds-col slds-size_8-of-12">
-                            <lightning-input type="datetime" name="Endtime" variant="label-hidden"></lightning-input>
+                            <lightning-input type="datetime" name="PopupModalEndTime" variant="label-hidden"
+                                onchange={handleChangePopup}>
+                            </lightning-input>
                         </div>
                     </div>
 
@@ -232,7 +236,9 @@
                         <div class="slds-col slds-size_3-of-12"><span>Comments</span></div>
                         <div class="slds-col slds-size_1-of-12 pm-cl"><span>:</span></div>
                         <div class="slds-col slds-size_8-of-12">
-                            <lightning-textarea name="Comments" variant="label-hidden"></lightning-textarea>
+                            <lightning-textarea name="PopupModalComments" variant="label-hidden"
+                                onchange={handleChangePopup}>
+                            </lightning-textarea>
                         </div>
                     </div>
 
