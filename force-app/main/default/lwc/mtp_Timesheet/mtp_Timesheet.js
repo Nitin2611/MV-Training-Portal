@@ -16,6 +16,7 @@ export default class Mtp_Timesheet extends LightningElement {
     calendarIcon = mtp_Calendar_icon;                       // calendar icon for timesheet
 
     @track timesheetDataList = [];
+    @track isCreateTimesheetModalOpen = false;
 
     connectedCallback() {
         try {
@@ -34,5 +35,20 @@ export default class Mtp_Timesheet extends LightningElement {
         } catch (error) {
             console.log({ error });
         }
+    }
+
+    openTimesheetModal(){
+        console.log("Timesheet popup modal open");
+        this.isCreateTimesheetModalOpen = true;
+    }
+
+    closeTimesheetModal(){
+        console.log("Timesheet popup modal closed");
+        this.isCreateTimesheetModalOpen = false;
+    }
+
+    createTimesheet(){
+        console.log("Create timesheet called");
+        
     }
 }

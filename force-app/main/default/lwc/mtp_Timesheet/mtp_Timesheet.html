@@ -182,5 +182,28 @@
 
         </div>
 
+        <div class="creat-btn" onclick={openTimesheetModal}>+</div>
+
     </div>
+
+    <!-- Create Timesheet Popup Modal -->
+    <template if:true={isCreateTimesheetModalOpen}>
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+        class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <div class="slds-modal__header popup-header">
+                <h1>Create Timesheet</h1>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium modal-body" id="modal-content-id-2">
+                
+                <div class="footer">
+                    <lightning-button variant="brand" label="Create" title="Create" onclick={createTimesheet} class="slds-m-right_x-small"></lightning-button>
+                    <lightning-button label="Cancle" title="Cancle" onclick={closeTimesheetModal} class="slds-m-right_x-small"></lightning-button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </template>
+    <!-- Create Timesheet Popup Modal -->
 </template>

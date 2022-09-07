@@ -19,13 +19,38 @@ export default class Mtp_CoursePage2 extends LightningElement {
     image_72 = mtb_Login_Images + '/image_72.png';
     image_73 = mtb_Login_Images + '/image_73.png';
 
+    /* Created Date:- 6th September 2022
+       Developer Name : Sakina
+    */
     @track moduleName;
     @track moduleDescription;
+    @track Modules = [];
+    @track error;
 
 
+    /***************************************************
+           * Author             : Sakina
+           * Created Date       : 6/09/2022
+           * Last Modified Date : 6/09/2022
+           * Description        : get Module Object Name and Description 
+                                  from apex for display on site
+           ***************************************************/
     connectedCallback() {
+        getModuleData()
+            .then(result => {
+                this.Modules = result;
+                console.log(this.Modules);
+            })
+            .catch(error => {
+                this.error = error;
+                console.log(this.error);
+            });
 
     }
+
+
+
+
 
 
 
@@ -45,15 +70,15 @@ export default class Mtp_CoursePage2 extends LightningElement {
         return `background-image:url(${mtb_Login_Images + '/course_image.png'})`;
     }
 
-    //Method 2 
-    @wire(getModuleData) wiredAccounts({ data, error }) {
-        if (data) {
-            this.moduleName = data.Name;
-            this.moduleDescription = data.Description__c;
-            console.log(data);
-        } else if (error) {
-            console.log(error);
-        }
-    }
+
+    // @wire(getModuleData) wiredAccounts({ data, error }) {
+    //     if (data) {
+    //         this.moduleName = data.Name;
+    //         this.moduleDescription = data.Description__c;
+    //         console.log(data);
+    //     } else if (error) {
+    //         console.log(error);
+    //     }
+    // }
 
 }
