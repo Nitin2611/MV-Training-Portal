@@ -189,21 +189,65 @@
     <!-- Create Timesheet Popup Modal -->
     <template if:true={isCreateTimesheetModalOpen}>
         <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
-        class="slds-modal slds-fade-in-open">
-        <div class="slds-modal__container">
-            <div class="slds-modal__header popup-header">
-                <h1>Create Timesheet</h1>
-            </div>
-            <div class="slds-modal__content slds-p-around_medium modal-body" id="modal-content-id-2">
-                
-                <div class="footer">
-                    <lightning-button variant="brand" label="Create" title="Create" onclick={createTimesheet} class="slds-m-right_x-small"></lightning-button>
-                    <lightning-button label="Cancle" title="Cancle" onclick={closeTimesheetModal} class="slds-m-right_x-small"></lightning-button>
+            class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header popup-header">
+                    <h1>Create Timesheet</h1>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium modal-body" id="modal-content-id-2">
+
+                    <div class="popup-fields slds-grid slds-wrap" style="padding: inherit;">
+                        <div class="slds-col slds-size_3-of-12">
+                            <span><abbr class="slds-required" title="required">* </abbr>Task</span>
+                        </div>
+                        <div class="slds-col slds-size_1-of-12 pm-cl"><span>:</span></div>
+                        <div class="slds-col slds-size_8-of-12">
+                            <lightning-combobox name="task" variant="label-hidden" value={value}
+                                placeholder="Select Task" options={options} onchange={handleChange}>
+                            </lightning-combobox>
+                        </div>
+                    </div>
+
+                    <div class="popup-fields slds-grid slds-wrap" style="padding: inherit;">
+                        <div class="slds-col slds-size_3-of-12">
+                            <span><abbr class="slds-required" title="required">* </abbr>Start Time</span>
+                        </div>
+                        <div class="slds-col slds-size_1-of-12 pm-cl"><span>:</span></div>
+                        <div class="slds-col slds-size_8-of-12">
+                            <lightning-input type="datetime" name="Starttime" variant="label-hidden"></lightning-input>
+                        </div>
+                    </div>
+
+                    <div class="popup-fields slds-grid slds-wrap" style="padding: inherit;">
+                        <div class="slds-col slds-size_3-of-12">
+                            <span><abbr class="slds-required" title="required">* </abbr>End Time</span>
+                        </div>
+                        <div class="slds-col slds-size_1-of-12 pm-cl"><span>:</span></div>
+                        <div class="slds-col slds-size_8-of-12">
+                            <lightning-input type="datetime" name="Endtime" variant="label-hidden"></lightning-input>
+                        </div>
+                    </div>
+
+                    <div class="popup-fields slds-grid slds-wrap" style="padding: inherit;">
+                        <div class="slds-col slds-size_3-of-12"><span>Comments</span></div>
+                        <div class="slds-col slds-size_1-of-12 pm-cl"><span>:</span></div>
+                        <div class="slds-col slds-size_8-of-12">
+                            <lightning-textarea name="Comments" variant="label-hidden"></lightning-textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="footer">
+                        <div class="buttoncls create-btn slds-p-around_small" title="Create" onclick={createTimesheet}>
+                            Create</div>
+                        <div class="buttoncls cancel-btn slds-p-around_small" title="Cancel"
+                            onclick={closeTimesheetModal}>Cancel
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
     </template>
     <!-- Create Timesheet Popup Modal -->
 </template>
