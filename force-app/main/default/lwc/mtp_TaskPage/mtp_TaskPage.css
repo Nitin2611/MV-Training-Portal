@@ -47,31 +47,15 @@
     overflow: auto;
 }
 
-.passengerDetails {
-    background: #edeaea;
-    border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    height: 66vh;
-    overflow: hidden;
-}
-
 .workContainer h2 {
     font-size: 20px;
     font-weight: 500;
 }
 
 .brDiv {
-    /* margin: 5px -8%; */
+    width: 116%;
+    margin: 5px -8%;
     border-top: 1px solid rgba(0, 0, 0, 0.2);
-}
-
-.flightDetailsDiv {
-    margin: auto;
-    width: 75%;
-}
-
-.overallProgress {
-    height: 50%;
 }
 
 .detailHeader {
@@ -103,7 +87,7 @@
 }
 
 .imgSmallDiv {
-    width: 25%;
+    width: 15%;
     display: grid;
     align-content: center;
 }
@@ -114,8 +98,10 @@
 }
 
 .contentDiv {
-    width: 55%;
+    width: 15%;
     padding: 10px;
+    display: flex;
+    margin: auto;
 }
 
 .contentDiv h3 {
@@ -129,12 +115,12 @@
 }
 
 .btnDiv {
-    width: 20%;
     display: flex;
-    justify-content: space-around;
+    margin: auto;
 }
 
-.startBtn {
+.startBtn,
+.stopBtn {
     background: #02ACE1;
     color: #fff;
     box-shadow: 0px 2px 2px rgb(0 0 0 / 25%);
@@ -143,7 +129,15 @@
     width: 85px;
     font-size: 15px;
     height: 22px;
-    margin-top: 75px;
+}
+
+.stopBtn {
+    background: #D9D9D9;
+    color: #000;
+}
+
+.timecls {
+    margin: auto;
 }
 
 .buttomContent {
@@ -243,17 +237,41 @@
 
 /* updated on 6th September  */
 
-.passengerDetails::-webkit-scrollbar,
-.subContainer::-webkit-scrollbar {
+.subContainer::-webkit-scrollbar,
+.popupContent::-webkit-scrollbar {
     display: none;
 }
 
-.addClass {
-    opacity: 0.4;
+.popup {
+    background: rgba(233, 230, 230, 0.93);
+    color: #000;
 }
 
-@media only screen and (max-width: 1400px) {
-    .overallProgress {
-        height: 40%;
-    }
+.popupFooter {
+    border: none;
+    text-align: center;
+}
+
+.popupHeader {
+    border-bottom: 1px solid black;
+}
+
+.endBtn,
+.closeBtn {
+    background: #02ACE1;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: 400;
+    width: 85px;
+    font-size: 15px;
+    height: 22px;
+}
+
+.closeBtn {
+    background: #D9D9D9;
+    color: #000;
+}
+
+.popupContent {
+    max-height: 40%;
 }

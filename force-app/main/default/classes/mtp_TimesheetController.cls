@@ -76,30 +76,27 @@ public without sharing class mtp_TimesheetController {
     * Description        : Creating timesheet record.
     ***************************************************/
     @AuraEnabled
-    public static String createTimesheetRecord(String taskId, Date startTime, Datetime endTime, String comments){
+    public static String createTimesheetRecord(String taskId, Datetime startTime, Datetime endTime, String comments){
         try {
             mtp_Timesheet__c tsr = new mtp_Timesheet__c();
             System.debug('taskId:    ==>'+ taskId);
-            System.debug('startTime: ==>'+ startTime);
-            System.debug('endTime:   ==>'+ endTime);
             System.debug('comments:  ==>'+ comments);
-            // Datetime sd = DateTime.valueOf(startTime.format('yyyy-MM-dd HH:mm:ss', 'IST'));
-            // String sdt = startTime.remove('.000Z');
+            
+            System.debug('startTime : ==>'+ startTime);
+            System.debug('endTime   :   ==>'+ endTime);
+            // startTime = startTime.addHours(5).addMinutes(30);
+            // endTime = endTime.addHours(5).addMinutes(30);
+            System.debug('startTime after: ==>'+ startTime);
+            System.debug('endTime after:   ==>'+ endTime);
 
-            // Datetime sd = DateTime.valueOf(sdt);
-            // // Datetime ed = DateTime.valueOf(endTime);
-            // System.debug('sd - String ==>'+ sdt);
-            // System.debug('sd - IST ==>'+ sd);
-            // System.debug('ed - IST ==>'+ ed);
             if (taskId == null || startTime == null || endTime == null) {
                 return 'required field missing';
             } else {
                 tsr.mtp_Task__c = taskId;
-                // tsr.Start_Time__c = startTime;
-                // tsr.End_Time__c = endTime;
+                tsr.Start_Time__c = startTime;
+                tsr.End_Time__c = endTime;
                 tsr.Comments__c = comments;
                 tsr.User__c = UserInfo.getUserId();
-
                 insert tsr;
             }
             return 'success';

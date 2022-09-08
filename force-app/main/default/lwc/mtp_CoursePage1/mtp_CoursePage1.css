@@ -87,8 +87,8 @@
     margin-top: 5px;
 }
 .mapimgdiv{
-    width: 78%;
-    height: 35rem;
+    /* width: 78%; */
+    height: 538px;
 }
 .cpimgdiv2{
     margin-top: -12.6rem;
@@ -96,6 +96,12 @@
 .cpimg3div{
     margin-left: -3%;
     margin-top: 17px;
+}
+.map_cls1{
+    width: 1032px;
+    margin-left: auto;
+    margin-right: auto;
+    /* background-color:aquamarine; */
 }
 
 @media screen and (min-width: 768px) and (max-width: 1440px){
@@ -105,8 +111,8 @@
         margin-top: 5px !important;
     }
     .mapimgdiv{
-        width: 62% !important;
-        height: 24rem !important;
+        /* width: 62% !important; */
+        /* height: 24rem !important; */
     }
     .cpimgdiv2{
         width: 80% !important;

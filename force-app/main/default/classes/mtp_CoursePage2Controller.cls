@@ -10,14 +10,52 @@ public with sharing class mtp_CoursePage2Controller {
     public static List<mtp_Module__c> getModuleData(){
         try{
 
-          return[SELECT Id, Name , Description__c  FROM mtp_Module__c ORDER BY CreatedDate DESC];
+          return[SELECT Id, Name , Description__c , Index__c   FROM mtp_Module__c ORDER BY Index__c ASC];
 
         }catch(Exception e){
 
-            System.debug(e);
-            return null;
+          throw new AuraHandledException(e.getMessage());
         }
     }
+
+    // @AuraEnabled
+    // public static String saveModuleData(mtp_Module__c module){
+    //     try{
+
+    //       mtp_Module__c modules = [SELECT Id, Completed__c , (Select  Id , Completed__c FROM mtp_Tasks__r )  FROM mtp_Module__c WHERE Id=: module.Id ];
+    //       modules.Completed__c=true;
+    //       return 'success';
+
+    //     }catch(Exception e){
+
+    //       throw new AuraHandledException(e.getMessage());
+    //     }
+    // }
     
+    @AuraEnabled
+    public static List<mtp_Task__c> getModuleTasks(Id getModuleId){
+
+      try {
+        return[Select Id , Name , Description__c  , mtp_Module__c , Completed__c  FROM mtp_Task__c WHERE mtp_Module__c =: getModuleId];
+
+        
+      } catch (Exception e) {
+        throw new AuraHandledException(e.getMessage());
+      }
+    }
+
+    @AuraEnabled
+    public static String saveRecords(mtp_Task__c task){
+
+      try {
+        mtp_Task__c taskList = [Select Id ,  Completed__c   FROM mtp_Task__c WHERE Id =: task.Id];
+        taskList.Completed__c = true;
+        update taskList;
+        return 'success';
+        
+      } catch (Exception e) {
+        throw new AuraHandledException(e.getMessage());
+      }
+    }
    
 }
