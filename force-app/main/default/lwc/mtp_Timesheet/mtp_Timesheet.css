@@ -61,7 +61,7 @@
 }
 
 .ts-date {
-    width: 20%;
+    width: 17%;
     padding-inline: 2%;
 }
 
@@ -83,8 +83,17 @@
     margin-top: 5%;
 }
 
+.tsk-pck {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 15%;
+    background: #FFFFFF;
+    border-radius: 5px;
+}
+
 .ts-dtl {
-    width: 20%;
+    width: 17%;
     padding-inline: 2%;
 }
 
@@ -130,7 +139,10 @@
 
 
 
-
+.ts-nv-cmnt {
+    width: 21%;
+    padding-inline: 2%;
+}
 
 .ts-ttl-time {
     width: 15%;
@@ -169,6 +181,56 @@
     height: 50%;
 }
 
+.ts-nv-cmnt-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+}
+
+.ts-nv-cmnt-val {
+    background: #FFFFFF;
+    border-radius: 5px;
+    display: flex;
+    height: 100%;
+    width: 90%;
+    padding: 5%;
+}
+
+.set-main {
+    width: 50%;
+    display: flex;
+    height: 100%;
+}
+
+.set-pl {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+}
+
+.set-sl {
+    width: 75%;
+    height: 60%;
+}
+
+.st-tme-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 75%;
+}
+
+.st-tme-dspl-div {
+    background: #D9D9D9;
+    border: 0.5px solid rgba(0, 0, 0, 0.31);
+    border-radius: 2px;
+    width: 90%;
+    margin-top: 15px;
+    min-height: 22px;
+}
+
 .dsply-ttl-tme {
     background: #FFFFFF;
     border-radius: 5px;
@@ -205,6 +267,14 @@
 }
 
 .ttl-tme {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    height: 25%;
+}
+
+.ts-nv-hdr {
     align-items: center;
     text-align: center;
     justify-content: center;

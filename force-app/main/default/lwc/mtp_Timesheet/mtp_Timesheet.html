@@ -38,9 +38,7 @@
                             <img src={calendarIcon} alt="calendar icon" title="Task Date">
                         </div>
                         <div class="tsk-dte">
-                            <!-- <div class="dsply-ttl-tme-div"> -->
                             <div class="">09/08/2022</div>
-                            <!-- </div> -->
                         </div>
                     </div>
                     <div class="ts-dtl">
@@ -48,12 +46,13 @@
                             <p class="txt">Task Details</p>
                         </div>
                         <div class="tsk-pck">
-                            <lightning-combobox name="tasks" variant="label-hidden" value={value} placeholder="Tasks"
-                                options={options} onchange={handleChange}></lightning-combobox>
+                            <div>Test Task</div>
                         </div>
-                        <div class="tsk-cmnt">
-                            <lightning-textarea name="taskCommentsBox" variant="label-hidden" placeholder="Comment">
-                            </lightning-textarea>
+                        <div class="tsk-dtl">
+                            <p class="txt">Total Time</p>
+                        </div>
+                        <div class="tsk-pck">
+                            <div>120 Min</div>
                         </div>
                     </div>
                     <div class="ts-time">
@@ -61,57 +60,47 @@
                             <p class="txt">Time</p>
                         </div>
                         <div class="start-end-time">
-                            <div>
-                                <div class="start-plane">
-                                    <img src={startTimeIcon} alt="startTimeIcon">
+                            <div class="set-main">
+                                <div class="set-pl">
+                                    <div class="start-plane">
+                                        <img src={startTimeIcon} alt="startTimeIcon">
+                                    </div>
                                 </div>
-                                <div>
-                                    <p>Start Time</p>
-                                    <div></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="start-plane">
-                                    <img src={endTimeIcon} alt="endTimeIcon">
-                                </div>
-                                <div>
-                                    <p>End Time</p>
-                                    <div></div>
+                                <div class="st-tme-div">
+                                    <div class="set-sl">
+                                        <div>Start Time</div>
+                                        <div class="st-tme-dspl-div">12:00</div>
+                                    </div>
                                 </div>
                             </div>
-                            <!-- <div class="round-trip"></div> -->
+                            <div class="set-main">
+                                <div class="set-pl">
+                                    <div class="start-plane">
+                                        <img src={endTimeIcon} alt="endTimeIcon">
+                                    </div>
+                                </div>
+                                <div class="st-tme-div">
+                                    <div class="set-sl">
+                                        <div>End Time</div>
+                                        <div class="st-tme-dspl-div">12:00</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="ts-ttl-time">
-                        <div class="ttl-tme">
+                    <div class="ts-nv-cmnt">
+                        <div class="ts-nv-hdr">
                             <p class="txt">Comments</p>
                         </div>
-                        <div class="dsply-ttl-tme-div">
-                            <div class="dsply-ttl-tme">Type</div>
+                        <div class="ts-nv-cmnt-div">
+                            <div class="ts-nv-cmnt-val">Type</div>
                         </div>
                     </div>
                 </div>
-                <!-- <div class="ts-right-div">
-                    <div class="ts-aprvr-cmnt">
-                        <div class="txt-cmnt-div">
-                            <p class="txt">Comments</p>
-                        </div>
-                        <lightning-textarea name="commentsBox" variant="label-hidden" placeholder="Type">
-                        </lightning-textarea>
-                    </div>
-                    <div class="ts-actn">
-                        <div class="ts-aprv">
-                            <img src={approveIcon} alt="Approve" title="Approve Timesheet">
-                        </div>
-                        <div class="ts-rjct">
-                            <img src={rejectIcon} alt="Reject" title="Reject Timesheet">
-                        </div>
-                    </div>
-                </div> -->
             </div>
 
 
-            <template for:each={timesheetDataList} for:item="ts">
+            <!-- <template for:each={timesheetDataList} for:item="ts">
                 <div class="timesheet-block-div" key={ts.Id}>
                     <div class="ts-left-div">
                         <div class="ts-date">
@@ -119,10 +108,8 @@
                                 <img src={calendarIcon} alt="calendar icon" title="Task Date">
                             </div>
                             <div class="tsk-dte">
-                                <!-- <lightning-input type="date" name="timesheetDate" variant="label-hidden">
-                                </lightning-input> -->
                                 <lightning-input type="text" name="timesheetDate" variant="label-hidden"
-                                    value={ts.CreatedDate}>
+                                    value={ts.date}>
                                 </lightning-input>
                             </div>
                         </div>
@@ -131,8 +118,6 @@
                                 <p class="txt">Task Details</p>
                             </div>
                             <div class="tsk-pck">
-                                <!-- <lightning-combobox name="tasks" variant="label-hidden" value={value}
-                                    placeholder="Tasks" options={options} onchange={handleChange}></lightning-combobox> -->
                                 <lightning-input type="text" name="tasks" variant="label-hidden"
                                     value={ts.mtp_Task__r.Name}>
                                 </lightning-input>
@@ -154,7 +139,8 @@
                                     </div>
                                     <div>
                                         <p>Start Time</p>
-                                        <lightning-input type="time" name="startTime" variant="label-hidden">
+                                        <lightning-input type="time" name="startTime" variant="label-hidden"
+                                            value={ts.Start_Time__c}>
                                         </lightning-input>
                                     </div>
                                 </div>
@@ -164,11 +150,11 @@
                                     </div>
                                     <div>
                                         <p>End Time</p>
-                                        <lightning-input type="time" name="endTime" variant="label-hidden">
+                                        <lightning-input type="time" name="endTime" variant="label-hidden"
+                                            value={ts.End_Time__c}>
                                         </lightning-input>
                                     </div>
                                 </div>
-                                <!-- <div class="round-trip"></div> -->
                             </div>
                         </div>
                         <div class="ts-ttl-time">
@@ -181,7 +167,6 @@
                         </div>
                     </div>
                     <div class="ts-right-div">
-                        <!-- <div class="crcle"></div> -->
                         <div class="ts-aprvr-cmnt">
                             <div class="txt-cmnt-div">
                                 <p class="txt">Comments</p>
@@ -195,6 +180,76 @@
                             </div>
                             <div class="ts-rjct">
                                 <img src={rejectIcon} alt="Reject" title="Reject Timesheet">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template> -->
+
+            <template for:each={timesheetDataList} for:item="ts">
+                <div class="timesheet-block-div" key={ts.Id}>
+                    <div class="ts-left-div">
+                        <div class="ts-date">
+                            <div class="cal-icon">
+                                <img src={calendarIcon} alt="calendar icon" title="Task Date">
+                            </div>
+                            <div class="tsk-dte">
+                                <div class="">{ts.date}</div>
+                            </div>
+                        </div>
+                        <div class="ts-dtl">
+                            <div class="tsk-dtl">
+                                <p class="txt">Task Details</p>
+                            </div>
+                            <div class="tsk-pck">
+                                <div>{ts.mtp_Task__r.Name}</div>
+                            </div>
+                            <div class="tsk-dtl">
+                                <p class="txt">Total Time</p>
+                            </div>
+                            <div class="tsk-pck">
+                                <div>120 Min</div>
+                            </div>
+                        </div>
+                        <div class="ts-time">
+                            <div class="tme-header">
+                                <p class="txt">Time</p>
+                            </div>
+                            <div class="start-end-time">
+                                <div class="set-main">
+                                    <div class="set-pl">
+                                        <div class="start-plane">
+                                            <img src={startTimeIcon} alt="startTimeIcon">
+                                        </div>
+                                    </div>
+                                    <div class="st-tme-div">
+                                        <div class="set-sl">
+                                            <div>Start Time</div>
+                                            <div class="st-tme-dspl-div">{ts.startTime}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="set-main">
+                                    <div class="set-pl">
+                                        <div class="start-plane">
+                                            <img src={endTimeIcon} alt="endTimeIcon">
+                                        </div>
+                                    </div>
+                                    <div class="st-tme-div">
+                                        <div class="set-sl">
+                                            <div>End Time</div>
+                                            <div class="st-tme-dspl-div">{ts.endTime}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ts-nv-cmnt">
+                            <div class="ts-nv-hdr">
+                                <p class="txt">Comments</p>
+                            </div>
+                            <div class="ts-nv-cmnt-div">
+                                <div class="ts-nv-cmnt-val">{ts.Comments__c}</div>
                             </div>
                         </div>
                     </div>

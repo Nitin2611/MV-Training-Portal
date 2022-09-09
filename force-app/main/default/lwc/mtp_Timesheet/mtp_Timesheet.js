@@ -17,7 +17,7 @@ export default class Mtp_Timesheet extends LightningElement {
     endTimeIcon = mtp_Airplane_EndTime_icon;                // end time (airplane) icon for timesheet
     calendarIcon = mtp_Calendar_icon;                       // calendar icon for timesheet
 
-    @track isSpinner = true;
+    @track isSpinner = false;
     @track timesheetDataList = [];
     @track taskOptionList = [];
     @track isCreateTimesheetModalOpen = false;
@@ -38,19 +38,41 @@ export default class Mtp_Timesheet extends LightningElement {
         }
     }
 
+    endSpinner() {
+        setTimeout(() => {
+            this.isSpinner = false;
+        }, 2500);
+    }
+
     getTimesheetList() {
         try {
+            this.isSpinner = true;
             getTimesheetData()
                 .then(result => {
                     this.timesheetDataList = result;
                     console.log("timesheetDataList ==>");
                     console.log({ result });
+                    for (const res of result) {
+                        res["date"] = res.CreatedDate.substring(0, 10).split("-").reverse().join("/");
+                        if (res.Start_Time__c != null) {
+                            res["startTime"] = res.Start_Time__c.substring(11, 16);
+                        }
+                        if (res.End_Time__c != null) {
+                            res["endTime"] = res.End_Time__c.substring(11, 16);
+                        }
+                    }
+                    // this.isSpinner = false;
+                    this.endSpinner();
                 })
                 .catch(error => {
                     console.log({ error });
+                    // this.isSpinner = false;
+                    this.endSpinner();
                 });
         } catch (error) {
             console.log({ error });
+            // this.isSpinner = false;
+            this.endSpinner();
         }
     }
 
@@ -123,6 +145,8 @@ export default class Mtp_Timesheet extends LightningElement {
 
     createTimesheet() {
         try {
+            this.isSpinner = true;
+            this.closeTimesheetModal();
             console.log("Create timesheet called");
             createTimesheetRecord({
                 taskId: this.tsTask,
@@ -133,12 +157,18 @@ export default class Mtp_Timesheet extends LightningElement {
                 .then(result => {
                     console.log("createTimesheet Result ==>");
                     console.log({ result });
+                    this.getTimesheetList();
+                    this.endSpinner();
                 })
                 .catch(error => {
                     console.log({ error });
+                    this.closeTimesheetModal();
+                    this.endSpinner();
                 });
         } catch (error) {
             console.log({ error });
+            this.closeTimesheetModal();
+            this.endSpinner();
         }
     }
 }
