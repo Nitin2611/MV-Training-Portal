@@ -17,6 +17,7 @@ export default class Mtp_Timesheet extends LightningElement {
     endTimeIcon = mtp_Airplane_EndTime_icon;                // end time (airplane) icon for timesheet
     calendarIcon = mtp_Calendar_icon;                       // calendar icon for timesheet
 
+    @track isSpinner = true;
     @track timesheetDataList = [];
     @track taskOptionList = [];
     @track isCreateTimesheetModalOpen = false;
