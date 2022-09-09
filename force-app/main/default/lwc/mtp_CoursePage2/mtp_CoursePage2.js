@@ -30,6 +30,8 @@ export default class Mtp_CoursePage2 extends NavigationMixin(LightningElement) {
     @track error;
     @track recordId;
 
+    @track arr3 = [];
+
 
     /***************************************************
            * Author             : Sakina
@@ -43,9 +45,6 @@ export default class Mtp_CoursePage2 extends NavigationMixin(LightningElement) {
             .then(result => {
                 this.modules = result;
 
-                console.log(result);
-
-
                 this.moduleImages.push(
                     mtb_Login_Images + '/Mod_1.png',
                     mtb_Login_Images + '/Mod_2.png',
@@ -56,42 +55,48 @@ export default class Mtp_CoursePage2 extends NavigationMixin(LightningElement) {
                 );
 
 
-                for (let i = 0; i < this.modules.length; i++) {
+                // for (let i = 0; i < this.modules.length; i++) {
+                //     for (let j = 0; j < this.moduleImages.length; j++) {
+                //         console.log(this.moduleImages[i] + '--------' + i);
+                //         console.log(this.moduleImages[j] + '+++++++++++++' + j);
+                //         this.modules[i]['image'] = this.moduleImages[j];
+                //     }
+
+                // }
+
+                var colorIndex = 0;
+                for (var i = 0; i < this.modules.length; ++i) {
                     for (let j = 0; j < this.moduleImages.length; j++) {
-                        this.modules[i]['image'] = this.moduleImages[i];
+                        console.log(j + '*****' + this.moduleImages.length);
+                        this.modules[i]['image'] = this.moduleImages[i]; //use the color for the current row
+                        // if (j == this.moduleImages.length - 1) //when you reached the last colour 
+                        // {
+                        //     console.log(j + '))))');
+                        //     j = 0;
+                        // }
+                        console.log(i == j);
                     }
+
 
                 }
 
-                console.log(this.modules);
-                console.log(this.moduleImages);
+
+                // this.modules.forEach(item => {
+                //     console.log(item);
+                //     this.moduleImages.forEach(elem => {
+                //             console.log(elem + '----' + item);
+
+                //         })
+                // });
             })
             .catch(error => {
                 this.error = error;
                 console.log(this.error);
             });
-
-        // let moduleObj = { 'sobjectType': 'mtp_Module__c' };
-        // moduleObj.Id = event.target.id.substring(0, 18);
-
-        // saveModuleData({module: moduleObj})
-        // .then(result=>{
-
-        // }) .catch(error => {
-        //     this.error = error;
-        //     console.log(this.error);
-        // });
-
-        let e = this.template.querySelector('moduleContainer');
-        console.log({ e });
-        // for (let i = 0; i < e.length; i++) {
-        // console.log(e[i] + '-----------');
-
-        // }
-
     }
 
     renderedCallback() {
+
         Promise.all([
                 loadStyle(this, mtp_CourcePage2_Css)
             ]).then(() => {
@@ -100,6 +105,18 @@ export default class Mtp_CoursePage2 extends NavigationMixin(LightningElement) {
             .catch(error => {
                 console.log({ error });
             });
+
+        // queryString.indexOf("=") + 1)
+        let modulesDiv = this.template.querySelectorAll('.moduleDiv');
+        modulesDiv.forEach(currentItem => {
+            if (currentItem.id.slice(0, -2) == 1) {
+                currentItem.style.opacity = 1;
+            } else {
+                currentItem.style.opacity = 0.5;
+            }
+        });
+
+
     }
 
     // Get Background Image

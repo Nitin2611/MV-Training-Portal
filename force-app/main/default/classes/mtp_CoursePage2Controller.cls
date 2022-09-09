@@ -18,20 +18,7 @@ public with sharing class mtp_CoursePage2Controller {
         }
     }
 
-    // @AuraEnabled
-    // public static String saveModuleData(mtp_Module__c module){
-    //     try{
 
-    //       mtp_Module__c modules = [SELECT Id, Completed__c , (Select  Id , Completed__c FROM mtp_Tasks__r )  FROM mtp_Module__c WHERE Id=: module.Id ];
-    //       modules.Completed__c=true;
-    //       return 'success';
-
-    //     }catch(Exception e){
-
-    //       throw new AuraHandledException(e.getMessage());
-    //     }
-    // }
-    
     @AuraEnabled
     public static List<mtp_Task__c> getModuleTasks(Id getModuleId){
 

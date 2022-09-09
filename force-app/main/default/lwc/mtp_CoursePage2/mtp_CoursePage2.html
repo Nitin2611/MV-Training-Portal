@@ -21,7 +21,7 @@
                                     
                                     <template for:each={modules} for:item="module">
                                                 
-                                        <div class="moduleDiv" key={module.Id} >
+                                        <div class="moduleDiv" key={module.Id} id={module.Index__c} >
                                             <div class="imgSmallDiv">
                                                  <img src={module.image}>
                                             </div>
@@ -40,7 +40,7 @@
                                             </div>
                                             </div>
                                             <div class="btnDiv">
-                                                <button class="slds-button slds-button_neutral startBtn" id={module.Id} onclick ={handleTaskPageNavigation}> Start </button>
+                                                <button class="slds-button slds-button_neutral startBtn" id={module.Id} onclick ={handleTaskPageNavigation} disabled={disableButton} > Start </button>
                                             </div>
                                         </div>
                                                     

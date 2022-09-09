@@ -95,6 +95,7 @@
     height: 115px;
     margin: 10px 0;
     display: flex;
+    opacity: 0.4;
 }
 
 .moduleContainer {
