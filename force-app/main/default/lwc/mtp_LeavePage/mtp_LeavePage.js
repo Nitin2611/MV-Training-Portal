@@ -15,25 +15,25 @@ export default class Mtp_LeavePage extends NavigationMixin(LightningElement) {
     timesheetimg = timesheet;
     leaveimg = leave;
     calenderimg = calender;
-    get imghome(){
+    get imghome() {
         return `background-image:url(${mtp_LeavePageBG})`;
     }
 
-    navigation(event){
-        console.log({event});
+    navigation(event) {
+        console.log({ event });
         let name = event.currentTarget.dataset.name;
-        console.log({name});
+        console.log({ name });
 
         var pageapiname;
         var urlValue = '/s/';
 
-        if(name == "apply"){
+        if (name == "apply") {
             pageapiname = 'ApplyLeave__c';
             urlValue += 'course';
-        }else if(name == "pending"){
-            pageapiname = 'Timesheet__c';
-            urlValue += 'timesheet';
-        }else if(name == "history"){
+        } else if (name == "pending") {
+            pageapiname = 'PendingLeave__c';
+            urlValue += 'leave/pendingleave';
+        } else if (name == "history") {
             pageapiname = 'History__c';
             urlValue += 'leave';
         }
