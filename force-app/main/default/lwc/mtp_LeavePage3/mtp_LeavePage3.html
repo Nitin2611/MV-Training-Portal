@@ -16,17 +16,8 @@
 
                 <h1>Pending Leaves</h1>
                 <div class="leave-lst-main">
-                    <div class="leave-block">
-                        <div class="left-tckt-circle"></div>
-                        <div class="main-lv-blck">
-                            <p class="lv-days">Half Day Application</p>
-                            <p class="lv-duration">Wed, 16 Nov 2022</p>
-                            <p class="lv-type">Casual</p>
-                        </div>
-                        <div class="right-tckt-circle"></div>
-                    </div>
 
-                    <div class="leave-block">
+                    <!-- <div class="leave-block">
                         <div class="left-tckt-circle"></div>
                         <div class="main-lv-blck">
                             <p class="lv-days">Half Day Application</p>
@@ -34,57 +25,23 @@
                             <p class="lv-type">Casual</p>
                         </div>
                         <div class="right-tckt-circle"></div>
-                    </div>
+                    </div> -->
+
+                    <template for:each={pendingLeaves} for:item="pl">
+                        <div class="leave-block" key={pl.Id}>
+                            <div class="left-tckt-circle"></div>
+                            <div class="main-lv-blck">
+                                <p class="lv-days">{pl.Day__c} Day Application</p>
+                                <!-- <p class="lv-duration">Wed, 16 Nov 2022</p> -->
+                                <p class="lv-duration">{pl.startDateSTR} - {pl.endDateSTR}</p>
+                                <p class="lv-type">{pl.Reason__c}</p>
+                            </div>
+                            <div class="right-tckt-circle"></div>
+                        </div>
+                    </template>
 
                 </div>
-                <!-- <div class="row_div" style="display: flex;">
-                    <div class="logo_class logo_class_1"></div>
-                    <div class="sdate_cls">
-                        <h2>From</h2>
-                        <lightning-input type="date" name="input1" placeholder="Select Start Date" class="start_date"
-                            data-name="start" onchange={handleChange}></lightning-input>
-                        <br>
-                    </div>
-                    <div class="middle_cls">
-                        <h2>Duration &nbsp;<b style="color: #000000;">24h 30m</b></h2>
-                        <div>
-                            <img src={flighticon}>
-                        </div>
-                        <h2>Direct</h2>
-                    </div>
-                    <div class="edate_cls">
-                        <h2>To</h2>
-                        <lightning-input type="date" name="input2" placeholder="Select End Date" class="end_date"
-                            data-name="end" onchange={handleChange}></lightning-input>
-                        <br>
-                    </div>
-                </div> -->
-                <!-- <div class="row_div1">
-                    <h3>Day Type</h3>
-                    <lightning-radio-group name="radioGroup" options={dayTypeOption} value={dayTypevalue} type="radio"
-                        data-name="radio" onchange={handleChange}></lightning-radio-group>
-                    <h3>I Want to Inform</h3>
-                    <lightning-combobox name="progress" value={informvalue} placeholder="Select your Mentor"
-                        options={informOption} class="inform_box" data-name="mentor" onchange={handleChange}>
-                    </lightning-combobox>
-                    <div class="footer_container">
-                        <lightning-layout>
-                            <lightning-layout-item size="7">
-                                <h3>Reason</h3>
-                                <lightning-textarea class="reason_box" data-name="reason"
-                                    placeholder="Type here leave reason" value={reasonval} onchange={handleChange}>
-                                </lightning-textarea>
-                            </lightning-layout-item>
 
-                            <lightning-layout-item class="button_cls" size="5">
-                                <lightning-button variant="brand" label="Apply Leave" onclick={applyleave}
-                                    class="submit_btn slds-m-left_x-small"></lightning-button>
-                                <lightning-button variant="neutral" label="Cancel" onclick={handleClick}
-                                    class="cancel_btn slds-m-left_x-small"></lightning-button>
-                            </lightning-layout-item>
-                        </lightning-layout>
-                    </div>
-                </div> -->
             </div>
             <div class="stack-top_right">
                 <h1>Booking Details</h1>

@@ -4,6 +4,7 @@ import NAME_FIELD from '@salesforce/schema/User.Name';
 import { getRecord } from 'lightning/uiRecordApi';
 import middleflight from '@salesforce/resourceUrl/mtp_leaveflighticon';
 
+import pendingLeavesList from '@salesforce/apex/LeaveController.pendingLeavesList';
 
 export default class Mtp_LeavePage3 extends LightningElement {
     @api recordId;
@@ -18,6 +19,7 @@ export default class Mtp_LeavePage3 extends LightningElement {
     @track startval;
     @track endval;
 
+    @track pendingLeaves = [];
 
     @wire(getRecord, {
         recordId: USER_ID,
@@ -58,26 +60,63 @@ export default class Mtp_LeavePage3 extends LightningElement {
         ];
     }
 
-    handleChange(event){
+    handleChange(event) {
 
         var selval = event.target.dataset.name;
-        console.log({selval});
-        if(selval == 'radio'){
+        console.log({ selval });
+        if (selval == 'radio') {
             this.dayval = event.target.value;
-        }else if(selval == 'mentor'){
+        } else if (selval == 'mentor') {
             this.mentorval = event.target.value;
-        }else if(selval == 'reason'){
+        } else if (selval == 'reason') {
             this.reasonval = event.target.value;
-        }else if(selval == 'start'){
+        } else if (selval == 'start') {
             this.startval = event.target.value;
-        }else if(selval == 'end'){
+        } else if (selval == 'end') {
             this.endval = event.target.value;
         }
-        console.log('dayval-->',this.dayval);
-        console.log('mentorval-->',this.mentorval);
-        console.log('reasonval-->',this.reasonval);
-        console.log('startval-->',this.startval);
-        console.log('endval-->',this.endval);
+        console.log('dayval-->', this.dayval);
+        console.log('mentorval-->', this.mentorval);
+        console.log('reasonval-->', this.reasonval);
+        console.log('startval-->', this.startval);
+        console.log('endval-->', this.endval);
+    }
+
+    connectedCallback() {
+        try {
+            this.getPendingLeavesList();
+        } catch (error) {
+            console.log({ error });
+        }
+    }
+
+    getPendingLeavesList() {
+        console.log('in the getPendingLeavesList');
+        try {
+            // this.isSpinner = true;
+            pendingLeavesList()
+                .then(result => {
+                    this.pendingLeaves = result;
+                    console.log({ result });
+
+                    for (const res of result) {
+                        var sd = new Date(res.Start_Date__c);
+                        var ed = new Date(res.End_Date__c);
+                        res["startDateSTR"] = sd.toString().substring(0, 15);
+                        res["endDateSTR"] = ed.toString().substring(0, 15);
+
+                    }
+
+                    // this.endSpinner();
+                })
+                .catch(error => {
+                    console.log({ error });
+                    // this.endSpinner();
+                });
+        } catch (error) {
+            console.log({ error });
+            // this.endSpinner();
+        }
     }
 
 }
