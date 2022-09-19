@@ -54,7 +54,7 @@
   border-color: #161616;
 }
 .ticket-head {
-  background-color: #72CBE8;
+  background-color: #C4CAFC;
   border-radius: 4px 4px 0 0;
 }
 .ticket-head .from-to {
@@ -176,7 +176,7 @@
   width: 0;
 }
 .buttoncls {
-  background: #72CBE8;
+  background: #C4CAFC;
   border-radius: 5px;
   cursor: pointer;
   /* font-family: 'Noto Sans'; */

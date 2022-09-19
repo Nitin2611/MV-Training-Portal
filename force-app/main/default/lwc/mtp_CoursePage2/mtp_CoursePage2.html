@@ -1,100 +1,155 @@
 <template>
-    <div class="container">
-        <div class="imgDiv" style={backgroundImage}>
-            <div class="titleDiv">
-                <p class="workTitle">My work</p>
-                <p class="workDisc">Let's learn about new knowledge and abilities</p>
+
+	<!-- Spinner -->
+
+    <template if:true={isSpinner}>
+        <div class="slds-spinner_container spinner-center" style="overflow: hidden;">
+            <div class="spinner-container">
+                <div class="plane-spinner">
+                    <svg id="b31cb9b3-53d9-4f4c-adfb-406ca50138db" data-name="Layer 1"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300.8 227.9">
+                        <title>delete</title>
+                        <path
+                            d="M1012.25,426a75.19,75.19,0,0,0-53.19,21.87l-149.86,149h53.46l93.43-92.62,29.7-29.43a37.56,37.56,0,0,1,26.73-11.07H1053l-16.2,37.8-17.28,40.77-7.29,17-16.2,37.8h41L1110,426.22h-97.75V426Z"
+                            transform="translate(-809.2 -425.95)" fill="#0684c2" />
+                        <path d="M862.66,596.87l119.89,51a74.47,74.47,0,0,0,29.43,5.94h40.77l-57-57Z"
+                            transform="translate(-809.2 -425.95)" fill="#10ab96" />
+                    </svg>
+                </div>
+                <h1 class="loading-spinnet-txt">Loading...</h1>
             </div>
         </div>
-        <div class="workContainer">
-            <div class="slds-grid slds-wrap">
-                <div class="slds-col slds-size_8-of-12">
-                    <div class="courseDiv subContainer">
-                            <h2 style="margin-bottom: 10px;">
-                                Course Assignments
-                            </h2>
-                            <div>
+    </template>
+
+<!-- Spinner -->
+
+<div class="container">
+    <div class="imgDiv" style={backgroundImage}>
+        <div class="titleDiv">
+            <p class="workTitle">My work</p>
+            <p class="workDisc">Let's learn about new knowledge and abilities</p>
+        </div>
+    </div>
+    <div class="workContainer">
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_8-of-12">
+                <div class="courseDiv subContainer">
+                    <h2 style="margin-bottom: 10px;">
+                        Course Assignments
+                    </h2>
+                    <div>
                         <lightning-tabset>
                             <lightning-tab label="All">
                                 <div class="brTabDiv"></div>
                                 <div class="moduleContainer">
-                                    
-                                    <template for:each={modules} for:item="module">
-                                                
-                                        <div class="moduleDiv" key={module.Id} id={module.Index__c} >
-                                            <div class="imgSmallDiv">
-                                                 <img src={module.image}>
-                                            </div>
-                                            <div class="contentDiv">
-                                                <h3 class="mainText"> {module.Name} </h3>
-                                                <p class="subText">{module.Description__c}</p>
-                                            <div class="buttomContent">
-                                                <h1>18:00</h1>
-                                                <div class="planDiv">
-                                                    <img class="leftPlanImg" src={image_72}>
-                                                    <h4> Duration </h4>
-                                                    <h5> 5h 30m </h5>
-                                                    <img class="rightPlanImg" src={image_73}>
-                                            </div>
-                                             <h1>23:30</h1>
-                                            </div>
-                                            </div>
-                                            <div class="btnDiv">
-                                                <button class="slds-button slds-button_neutral startBtn" id={module.Id} onclick ={handleTaskPageNavigation} disabled={disableButton} > Start </button>
-                                            </div>
-                                        </div>
-                                                    
-                                    </template>
-</div>
-</lightning-tab>
-<lightning-tab label="Completed">
-    <div class="brTabDiv"></div> Completed Course</lightning-tab>
-</lightning-tabset>
-</div>
-</div>
-</div>
-<div class="slds-col slds-size_4-of-12">
-    <div class="passengerDetails">
-        <h2 class="slds-align_absolute-center slds-p-vertical_x-small"> Passenger Details</h2>
-        <div class="brDiv"></div>
-        <div class="overallProgress">
-            <p class="detailHeader slds-m-left_medium slds-m-top_medium "> Overall Progress</p>
+                                    <template for:each={subcourse} for:item="module">
 
-        </div>
-        <div class="brDiv"></div>
-        <h2 class="detailHeader slds-align_absolute-center slds-p-vertical_x-small"> Flight Details </h2>
-        <div class="brDiv"></div>
+											<div class="moduleDiv" key={module.g} id={module.g}>
+												<div class="imgSmallDiv">
+													<img src={module.image}>
+												</div>
+												<div class="contentDiv">
+													<h3 class="mainText"> {module.s} </h3>
+													<!-- <p class="subText">{module.Description__c}</p> -->
+													<div class="buttomContent">
+														<h1>18:00</h1>
+														<div class="planDiv">
+															<img class="leftPlanImg" src={image_72}>
+															<h4> Duration </h4>
+															<h5> 5h 30m </h5>
+															<img class="rightPlanImg" src={image_73}>
+                                            </div>
+															<h1>23:30</h1>
+														</div>
+													</div>
+													<div class="btnDiv">
+														<button class="slds-button slds-button_neutral startBtn" data-id={module.g} onclick ={handleTaskPageNavigation} > Start </button>
+													</div>
+												</div>
 
-        <div class="slds-grid slds-grid_vertical  flightDetailsDiv">
-            <div class="slds-grid slds-m-vertical_medium">
-                <div class="slds-col">
-                    <span>Airlines</span>
-                    <h3>MV Clouds</h3>
-                </div>
-                <div class="slds-col ">
-                    <span>Flight</span>
-                    <h3>D408</h3>
+										</template>
+                                </div>
+                            </lightning-tab>
+                            <lightning-tab label="Completed">
+                                <div class="brTabDiv"></div> Completed Course
+                                <div class="completedDiv">
+                                    <!-- <template for:each={modules} for:item="module">
+											<template if:true={module.Completed__c}>
+
+										<div class="completedModuleDiv" key={module.Id} id={module.Id}>
+											<div class="imgSmallDiv">
+												<img src={module.image}>
+            </div>
+												<div class="contentDiv">
+													<h3 class="mainText"> {module.Course__c} </h3>
+													<p class="subText">{module.Description__c}</p>
+													<div class="buttomContent">
+														<h1>18:00</h1>
+														<div class="planDiv">
+															<img class="leftPlanImg" src={image_72}>
+															<h4> Duration </h4>
+															<h5> 5h 30m </h5>
+															<img class="rightPlanImg" src={image_73}>
+            </div>
+															<h1>23:30</h1>
+														</div>
+													</div>
+													<div class="btnDiv">
+														<button class="slds-button slds-button_neutral completedStartBtn" id={module.Id} disabled > Start </button>
+													</div>
+												</div>
+												</template>
+
+										</template> -->
+                                </div>
+                            </lightning-tab>
+                        </lightning-tabset>
+                    </div>
                 </div>
             </div>
+            <div class="slds-col slds-size_4-of-12">
+                <div class="passengerDetails">
+                    <h2 class="slds-align_absolute-center slds-p-vertical_x-small"> Passenger Details</h2>
+                    <div class="brDiv"></div>
+                    <div class="overallProgress">
+                        <p class="detailHeader slds-m-left_medium slds-m-top_medium "> Overall Progress</p>
 
-            <div class="slds-grid slds-m-vertical_medium ">
-                <div class="slds-col">
-                    <span>Flight Class</span>
-                    <h3>Business Class</h3>
-                </div>
-                <div class="slds-col">
-                    <span>Passanger</span>
-                    <h3> 1 Adult </h3>
-                </div>
-            </div>
+                    </div>
+                    <div class="brDiv"></div>
+                    <h2 class="detailHeader slds-align_absolute-center slds-p-vertical_x-small"> Flight Details
+                    </h2>
+                    <div class="brDiv"></div>
+
+                    <div class="slds-grid slds-grid_vertical  flightDetailsDiv">
+                        <div class="slds-grid slds-m-vertical_medium">
+                            <div class="slds-col">
+                                <span>Airlines</span>
+                                <h3>MV Clouds</h3>
+                            </div>
+                            <div class="slds-col ">
+                                <span>Flight</span>
+                                <h3>D408</h3>
+                            </div>
+                        </div>
+
+                        <div class="slds-grid slds-m-vertical_medium ">
+                            <div class="slds-col">
+                                <span>Flight Class</span>
+                                <h3>Business Class</h3>
+                            </div>
+                            <div class="slds-col">
+                                <span>Passanger</span>
+                                <h3> 1 Adult </h3>
+                            </div>
+                        </div>
 
 
-        </div>
+                    </div>
 
 
 
 
-        <!-- <div>
+                    <!-- <div>
             <p class="detailHeader"> Overall Progress</p>
             <div style="height: 25vh;"></div>
             <div class="brDiv"></div>
@@ -126,9 +181,9 @@
 
             </div>
         </div> -->
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-</div>
-</div>
 </div>
 </template>

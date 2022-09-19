@@ -20,8 +20,8 @@
 		</div>
 	</template>
 
-    <!-- ERROR MESSAGE -->
-	<template if:true={error}>
+<!-- ERROR MESSAGE -->
+<template if:true={error}>
 		<div class="slds-notify_container">
 			<div class="slds-notify slds-notify_toast error_outer" role="status">
 				<span class="slds-no-flex error_inner" title={message}>
@@ -38,5 +38,23 @@
 			</div>
 		</div>
 	</template>
+
+<!-- SUCCESS TOAST MESSAGE -->
+<template if:true={successToast}>
+<div class="slds-notify_container">
+    <div class="slds-notify slds-notify_toast error_outer" role="status">
+        <span class="slds-no-flex success_inner" title={successMessage}>
+                    <img class="sucessToastImg" src={sucessToastImg} />
+                </span>
+        <div class="slds-p-left_medium">
+            <h1 class="tost_h1">{successMessage}</h1>
+            <p>Your data has been successfully submitted.</p>
+        </div>
+        <div class="slds-notify__close close_btn">
+            <lightning-button-icon icon-name="utility:close" size="small" variant="border-filled" class="slds-button slds-button_icon slds-button_icon-inverse" alternative-text="next" onclick={closeModel}></lightning-button-icon>
+        </div>
+    </div>
+</div>
+</template>
 
 </template>

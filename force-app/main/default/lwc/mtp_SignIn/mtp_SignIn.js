@@ -23,14 +23,14 @@ export default class Mtp_SignIn extends NavigationMixin(LightningElement) {
     connectedCallback(){
         try {
             this.isSpinner = true;
-            if (!this.isguestuser) {
-                this[NavigationMixin.Navigate]({
-                    type: 'comm__loginPage',
-                    attributes: {
-                        actionName: 'logout'
-                    },
-                });
-            }
+            // if (!this.isguestuser) {
+            //     this[NavigationMixin.Navigate]({
+            //         type: 'comm__loginPage',
+            //         attributes: {
+            //             actionName: 'logout'
+            //         },
+            //     });
+            // }
             setTimeout(() => {
                 this.isSpinner = false;
             }, 2000);

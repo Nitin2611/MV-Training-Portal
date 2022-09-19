@@ -2,34 +2,46 @@ import { LightningElement, track, api } from 'lwc';
 import success from '@salesforce/resourceUrl/success';
 import error from '@salesforce/resourceUrl/error';
 import celebrate from '@salesforce/resourceUrl/celebrate';
+import toastSucess from '@salesforce/resourceUrl/successToast';
+
 
 export default class Mtp_ToastMessage extends LightningElement {
 
     @track success = false;
     @track error = false;
+    @track successToast = false;
     successimg = success;
     errorimg = error;
+    sucessToastImg = toastSucess;
     message;
     autoCloseTime;
-   
+
     @api
     showToast(type, message, time) {
         console.log('Show Toast');
-        
-        if(type== 'error'){
+
+        if (type == 'error') {
             this.error = true;
             this.message = message;
-            this.autoCloseTime=time;
+            this.autoCloseTime = time;
             setTimeout(() => {
                 this.closeModel();
             }, this.autoCloseTime);
-        }else {
+        } else if(type == 'success'){
+            // this.success = true;
+            this.successToast = true;
+            this.successMessage = message;
+            this.autoCloseTime = time;
+            setTimeout(() => {
+                this.closeModel();
+            }, this.autoCloseTime);
+        } else{
             this.success = true;
         }
-        
+
     }
 
-    get celebrategif(){
+    get celebrategif() {
         return `background-image:url(${celebrate})`;
     }
 
@@ -38,6 +50,7 @@ export default class Mtp_ToastMessage extends LightningElement {
         this.error = false;
         this.type = '';
         this.message = '';
+        this.successToast = false;
     }
 
 }

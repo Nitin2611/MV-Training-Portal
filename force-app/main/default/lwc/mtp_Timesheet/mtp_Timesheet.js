@@ -6,7 +6,8 @@ import mtp_Airplane_StartTime_icon from '@salesforce/resourceUrl/mtp_Airplane_St
 import mtp_Airplane_EndTime_icon from '@salesforce/resourceUrl/mtp_Airplane_EndTime_icon';
 import mtp_Calendar_icon from '@salesforce/resourceUrl/mtp_Calendar_icon';
 
-import getTimesheetData from '@salesforce/apex/mtp_TimesheetController.getTimesheetData';
+// import getTimesheetData from '@salesforce/apex/mtp_TimesheetController.getTimesheetData';
+import getTimesheetData from '@salesforce/apex/mtp_TimesheetController.getTimesheet';
 import getTaskList from '@salesforce/apex/mtp_TimesheetController.getTaskList';
 import createTimesheetRecord from '@salesforce/apex/mtp_TimesheetController.createTimesheetRecord';
 export default class Mtp_Timesheet extends LightningElement {
@@ -18,7 +19,7 @@ export default class Mtp_Timesheet extends LightningElement {
     calendarIcon = mtp_Calendar_icon;                       // calendar icon for timesheet
 
     @track isSpinner = false;
-    @track timesheetDataList = [];
+    @track timesheetDataList;
     @track taskOptionList = [];
     @track isCreateTimesheetModalOpen = false;
 
@@ -45,23 +46,23 @@ export default class Mtp_Timesheet extends LightningElement {
     }
 
     getTimesheetList() {
+        console.log('in the getTimeSheetList');
         try {
             this.isSpinner = true;
             getTimesheetData()
                 .then(result => {
-                    this.timesheetDataList = result;
-                    console.log("timesheetDataList ==>");
+                    // this.timesheetDataList = result;
                     console.log({ result });
-                    for (const res of result) {
-                        res["date"] = res.CreatedDate.substring(0, 10).split("-").reverse().join("/");
-                        if (res.Start_Time__c != null) {
-                            res["startTime"] = res.Start_Time__c.substring(11, 16);
-                        }
-                        if (res.End_Time__c != null) {
-                            res["endTime"] = res.End_Time__c.substring(11, 16);
-                        }
+
+                    var dataList = [];
+                    for(var key in result){
+                        dataList.push({value: result[key], key:key});
                     }
-                    // this.isSpinner = false;
+                    console.log({dataList});
+                    if(dataList.length > 0){
+                        this.timesheetDataList = [];
+                        this.timesheetDataList = dataList;
+                    } 
                     this.endSpinner();
                 })
                 .catch(error => {
@@ -95,6 +96,11 @@ export default class Mtp_Timesheet extends LightningElement {
         } catch (error) {
             console.log({ error });
         }
+    }
+    
+
+    dateSelect(event){
+        console.log({event});
     }
 
     openTimesheetModal() {

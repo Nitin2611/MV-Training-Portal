@@ -39,6 +39,69 @@ public without sharing class mtp_TimesheetController {
         }
     }
 
+    @AuraEnabled
+    public static Map<String,timesheetwrap> getTimesheet(){
+        List<mtp_Timesheet__c> timesheetList = [SELECT Id,Date__c,Start_Time__c,End_Time__c,Comments__c FROM mtp_Timesheet__c WHERE User__c =: UserInfo.getUserId() ORDER BY Date__c DESC];
+        Map<String,timesheetwrap> returnData = new Map<String,timesheetwrap>();
+        for(mtp_Timesheet__c mt: timesheetList){
+            timesheetwrap tw;
+
+            if(returnData.containsKey(mt.Date__c.format())){
+                tw = returnData.get(mt.Date__c.format());
+                tw.startTime = (tw.startTime < mt.Start_Time__c) ? tw.startTime : mt.Start_Time__c;
+                tw.endTime = (tw.endTime > mt.End_Time__c) ? tw.endTime : mt.End_Time__c;
+                Long refLong = tw.totalTimeLong;
+                tw.totalTimeLong = (datetime.newinstance(mt.Date__c, mt.End_Time__c).getTime() - datetime.newinstance(mt.Date__c, mt.Start_Time__c).getTime());
+                tw.totalTimeLong /= 60000;
+                tw.totalTimeLong += refLong;
+                tw.totalTimeString = (tw.totalTimeLong/60) +' H '+math.mod(tw.totalTimeLong,60)+' M';
+                tw.totalTask++;
+
+                tw.startTimeString = tw.startTime.hour()+' H '+tw.startTime.minute()+' M';
+                tw.endTimeString = tw.endTime.hour()+' H '+tw.endTime.minute()+' M';
+            }else{
+                tw = new timesheetwrap();
+                tw.startTime  = mt.Start_Time__c;
+                tw.endTime = mt.End_Time__c;
+                tw.totalTimeLong = datetime.newinstance(mt.Date__c, mt.End_Time__c).getTime() - datetime.newinstance(mt.Date__c, mt.Start_Time__c).getTime();
+                tw.totalTimeLong /= 60000;
+                system.debug(tw.totalTimeLong);
+                tw.totalTimeString = (tw.totalTimeLong/60) +' H '+math.mod(tw.totalTimeLong,60)+' M';
+                tw.totalTask = 1;
+                tw.startTimeString = mt.Start_Time__c.hour()+' H '+mt.Start_Time__c.minute()+' M';
+                tw.endTimeString = mt.End_Time__c.hour()+' H '+mt.End_Time__c.minute()+' M';
+            }
+            returnData.put(mt.Date__c.format(),tw);
+        }
+
+        if(!returnData.containsKey(system.today().format())){
+            timesheetwrap tw = new timesheetwrap();
+            tw.totalTimeString = '0 H 0 M';
+            tw.startTimeString = '0 H 0 M';
+            tw.endTimeString = '0 H 0 M';
+            returnData.put(system.today().format(),tw);
+        }
+
+        return returnData;
+    }
+
+    public class timesheetwrap{
+        @AuraEnabled
+        public Long totalTimeLong {get;set;}
+        @AuraEnabled
+        public String totalTimeString {get;set;}
+        @AuraEnabled
+        public time startTime {get;set;}
+        @AuraEnabled
+        public time endTime {get;set;}
+        @AuraEnabled
+        public String startTimeString {get;set;}
+        @AuraEnabled
+        public String endTimeString {get;set;}
+        @AuraEnabled
+        public Integer totalTask {get;set;}
+    }
+
 
     /***************************************************
     * Author             : Nitin
@@ -84,17 +147,13 @@ public without sharing class mtp_TimesheetController {
             
             System.debug('startTime : ==>'+ startTime);
             System.debug('endTime   :   ==>'+ endTime);
-            // startTime = startTime.addHours(5).addMinutes(30);
-            // endTime = endTime.addHours(5).addMinutes(30);
-            System.debug('startTime after: ==>'+ startTime);
-            System.debug('endTime after:   ==>'+ endTime);
 
             if (taskId == null || startTime == null || endTime == null) {
                 return 'required field missing';
             } else {
                 tsr.mtp_Task__c = taskId;
-                tsr.Start_Time__c = startTime;
-                tsr.End_Time__c = endTime;
+                // tsr.Start_Time__c = startTime;
+                // tsr.End_Time__c = endTime;
                 tsr.Comments__c = comments;
                 tsr.User__c = UserInfo.getUserId();
                 insert tsr;

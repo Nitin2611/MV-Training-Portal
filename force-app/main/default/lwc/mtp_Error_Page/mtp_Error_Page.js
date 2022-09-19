@@ -1,7 +1,9 @@
 import { LightningElement } from 'lwc';
 import ErrorImage from '@salesforce/resourceUrl/ErrorImage';
 import ArrowLeft from '@salesforce/resourceUrl/ArrowLogo';
-export default class Mtp_Error_Page extends LightningElement {
+import { NavigationMixin } from 'lightning/navigation';
+
+export default class Mtp_Error_Page extends NavigationMixin(LightningElement) {
     arrowLeft = ArrowLeft;
     get backgroundImage() {
         return `background-position: center;
@@ -9,5 +11,14 @@ export default class Mtp_Error_Page extends LightningElement {
         background-size: cover;
         height:100%; 
         background-image:url(${ErrorImage})`;
-    }    
+    }
+    navigateToHome() {
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'Home'
+            },
+        });
+
+    }
 }

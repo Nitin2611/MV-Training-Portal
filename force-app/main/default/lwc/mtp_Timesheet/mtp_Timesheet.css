@@ -58,6 +58,7 @@
     background: #EDEAEA;
     width: 100%;
     display: flex;
+    border-radius: 5px ;
 }
 
 .ts-date {
