@@ -106,9 +106,24 @@ public class LeaveController {
             String pendStatus = 'Pending Approved';
             User usr = [SELECT Id, ContactId, Contact.Name FROM User WHERE Id =: UserInfo.getUserId()];
             // pendingLeaves = [SELECT Id, Name, Start_Date__c, End_Date__c, Day__c, Reason__c, Contact_Trainee__c, Mentor__c, Status__c FROM Leave__c WHERE Contact_Trainee__c =: USR.ContactId];
-      pendingLeaves = [SELECT Id, Name, Start_Date__c, End_Date__c, Day__c, Reason__c, Contact_Trainee__c, Mentor__c, Status__c FROM Leave__c WHERE Status__c = 'Pending Approved' AND Contact_Trainee__c = :usr.ContactId];
+            pendingLeaves = [SELECT Id, Name, Start_Date__c, End_Date__c, Day__c, Reason__c, Contact_Trainee__c, Mentor__c, Status__c FROM Leave__c WHERE Status__c = 'Pending Approved' AND Contact_Trainee__c = :usr.ContactId];
             System.debug('pendingLeaves ==>' + pendingLeaves);
             return pendingLeaves;
+        } catch (Exception e) {
+            System.debug('#### Exception Called ==> '+e.getStackTraceString() + ' || '+e.getMessage()); 
+            return null;
+        }
+    }
+
+    @AuraEnabled
+    public static List<Leave__c> allLeavesList(){
+        try {
+            List<Leave__c> allLeaves = new List<Leave__c>();
+            User usr = [SELECT Id, ContactId, Contact.Name FROM User WHERE Id =: UserInfo.getUserId()];
+            allLeaves = [SELECT Id, Name, Start_Date__c, End_Date__c, Day__c, Reason__c, Contact_Trainee__c, Mentor__c, Status__c FROM Leave__c WHERE Contact_Trainee__c =: USR.ContactId];
+            // allLeaves = [SELECT Id, Name, Start_Date__c, End_Date__c, Day__c, Reason__c, Contact_Trainee__c, Mentor__c, Status__c FROM Leave__c WHERE Status__c = 'Pending Approved' AND Contact_Trainee__c = :usr.ContactId];
+            System.debug('allLeaves ==>' + allLeaves);
+            return allLeaves;
         } catch (Exception e) {
             System.debug('#### Exception Called ==> '+e.getStackTraceString() + ' || '+e.getMessage()); 
             return null;

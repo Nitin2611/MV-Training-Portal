@@ -1,5 +1,4 @@
 <template>
-    <!-- <div> Starting......</div> -->
 
     <!-- Toast Message -->
     <c-mtp_-toast-message></c-mtp_-toast-message>
@@ -14,18 +13,8 @@
         <div class="sub_container">
             <div class="stack-top_left">
 
-                <h1>Pending Leaves</h1>
+                <h1>Leave History</h1>
                 <div class="leave-lst-main">
-
-                    <!-- <div class="leave-block">
-                        <div class="left-tckt-circle"></div>
-                        <div class="main-lv-blck">
-                            <p class="lv-days">Half Day Application</p>
-                            <p class="lv-duration">Wed, 16 Nov 2022</p>
-                            <p class="lv-type">Casual</p>
-                        </div>
-                        <div class="right-tckt-circle"></div>
-                    </div> -->
 
                     <template for:each={pendingLeaves} for:item="pl">
                         <div class="leave-block" key={pl.Id}>
@@ -88,12 +77,6 @@
                         <p class="pbody">01</p>
                     </div>
                 </div>
-                <!-- <div class="slds-align_absolute-center">
-              <input type="button" value="Continue Exploring" onclick={handleClick} class="submit_btn slds-m-left_x-small" >
-            </div> -->
-                <!-- <lightning-button variant="brand" label="Continue Exploring" onclick={handleClick}
-                    class="submit_btn slds-align_absolute-center slds-m-left_x-small" style="margin:2%;">
-                </lightning-button> -->
             </div>
         </div>
     </div>
