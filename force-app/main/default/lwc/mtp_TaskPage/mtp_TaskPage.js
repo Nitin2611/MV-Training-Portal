@@ -78,7 +78,7 @@ export default class Mtp_TaskPage extends LightningElement {
                         if (j == this.taskImages.length)
                             j = 0;
                     }
-                    console.log('tasklist',this.taskList);
+                    console.log('tasklist', this.taskList);
 
                 })
                 .catch(error => {
@@ -117,10 +117,10 @@ export default class Mtp_TaskPage extends LightningElement {
     // }
     renderedCallback() {
         Promise.all([
-                loadStyle(this, mtp_CourcePage2_Css)
-            ]).then(() => {
-                console.log('Css loaded');
-            })
+            loadStyle(this, mtp_CourcePage2_Css)
+        ]).then(() => {
+            console.log('Css loaded');
+        })
             .catch(error => {
                 console.log({ error });
             });
@@ -138,52 +138,52 @@ export default class Mtp_TaskPage extends LightningElement {
      * Description        : show modal on click of start button
      ***************************************************/
     showModalBox(event) {
-            try {
+        try {
 
-                console.log('start',event.currentTarget.dataset.start);
-                console.log('inpro',event.currentTarget.dataset.inpro);
-                console.log('como',event.currentTarget.dataset.completed);
-                this.isStart = event.currentTarget.dataset.start;
-                this.isEnd = event.currentTarget.dataset.inpro;
-                this.isCompleted = event.currentTarget.dataset.completed;
+            console.log('start', event.currentTarget.dataset.start);
+            console.log('inpro', event.currentTarget.dataset.inpro);
+            console.log('como', event.currentTarget.dataset.completed);
+            this.isStart = event.currentTarget.dataset.start;
+            this.isEnd = event.currentTarget.dataset.inpro;
+            this.isCompleted = event.currentTarget.dataset.completed;
 
-                this.isSpinner = true;
-                // this.isShowModal = true;
-                this.taskName = event.target.name;
-                var description = event.target.value;
-                description = description.replaceAll(/(<([^>]+)>)/ig, '');
-                this.taskDescription = description;
-                this.taskId = event.target.id;
-                let td = event.target.id.substring(0, 18);
-                console.log('this.td ---- ' + td);
-                // createCourseJourney({ tId: td })
-                //     .then(result => {
-                    //         console.log({ result });
-                    //         // eval("$A.get('e.force:refreshView').fire();");
-                    //     })
-                    //     .catch(error => {
-                        //         this.error = error;
-                        //         console.log(this.error);
-                        //     });
-                        setTimeout(() => {
-                            this.isShowModal = true;
-                        }, 1000);
-                this.isSpinner = false;
+            this.isSpinner = true;
+            // this.isShowModal = true;
+            this.taskName = event.target.name;
+            var description = event.target.value;
+            description = description.replaceAll(/(<([^>]+)>)/ig, '');
+            this.taskDescription = description;
+            this.taskId = event.target.id;
+            let td = event.target.id.substring(0, 18);
+            console.log('this.td ---- ' + td);
+            // createCourseJourney({ tId: td })
+            //     .then(result => {
+            //         console.log({ result });
+            //         // eval("$A.get('e.force:refreshView').fire();");
+            //     })
+            //     .catch(error => {
+            //         this.error = error;
+            //         console.log(this.error);
+            //     });
+            setTimeout(() => {
+                this.isShowModal = true;
+            }, 1000);
+            this.isSpinner = false;
 
-                console.log('this.IsStart--',this.isStart);
-                console.log('this.IsEnd--',this.isEnd);
-                console.log('this.IsCompleted--',this.isCompleted);
-                
-            } catch (e) {
-                console.log({ e });
-            }
+            console.log('this.IsStart--', this.isStart);
+            console.log('this.IsEnd--', this.isEnd);
+            console.log('this.IsCompleted--', this.isCompleted);
+
+        } catch (e) {
+            console.log({ e });
         }
-        /***************************************************
-         * Author             : Sakina
-         * Created Date       : 8/09/2022
-         * Last Modified Date : 8/09/2022
-         * Description        : hide  modal on click of close button
-         ***************************************************/
+    }
+    /***************************************************
+     * Author             : Sakina
+     * Created Date       : 8/09/2022
+     * Last Modified Date : 8/09/2022
+     * Description        : hide  modal on click of close button
+     ***************************************************/
     hideModalBox() {
         this.isShowModal = false;
     }

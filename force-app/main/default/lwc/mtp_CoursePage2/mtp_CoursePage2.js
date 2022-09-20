@@ -9,7 +9,7 @@ import mtp_CourcePage2_Css from '@salesforce/resourceUrl/mtp_CourcePage2_Css';
 // import getModuleData from '@salesforce/apex/mtp_CoursePage2Controller.getModuleData';
 import { NavigationMixin } from 'lightning/navigation';
 import { CurrentPageReference } from 'lightning/navigation';
-// import getsubcourse from '@salesforce/apex/CourseController.getsubcourse';
+import getsubcourse from '@salesforce/apex/CourseController.getsubcourse';
 
 export default class Mtp_CoursePage2 extends NavigationMixin(LightningElement) {
 
@@ -74,25 +74,27 @@ export default class Mtp_CoursePage2 extends NavigationMixin(LightningElement) {
             mtb_Login_Images + '/Mod_6.png',
         );
 
+        console.log('in Connected Callback ==>');
         setTimeout(() => {
+            console.log('in Connected Callback 1 ==>');
             if (this.courseid != undefined || this.courseid != '')
                 getsubcourse({ courseid: this.courseid })
-                .then(result => {
-                    console.log({ result });
-                    this.subcourse = result;
+                    .then(result => {
+                        console.log({ result });
+                        this.subcourse = result;
 
 
-                    let j = 0;
-                    for (var i = 0; i < this.subcourse.length; i++) {
-                        this.subcourse[i]['image'] = this.moduleImages[j];
-                        j++;
-                        if (j == this.moduleImages.length)
-                            j = 0;
-                    }
-                })
-                .catch(error => {
-                    console.log({ error });
-                });
+                        let j = 0;
+                        for (var i = 0; i < this.subcourse.length; i++) {
+                            this.subcourse[i]['image'] = this.moduleImages[j];
+                            j++;
+                            if (j == this.moduleImages.length)
+                                j = 0;
+                        }
+                    })
+                    .catch(error => {
+                        console.log({ error });
+                    });
             this.isSpinner = false;
         }, 1000);
     }
@@ -100,10 +102,10 @@ export default class Mtp_CoursePage2 extends NavigationMixin(LightningElement) {
     renderedCallback() {
 
         Promise.all([
-                loadStyle(this, mtp_CourcePage2_Css)
-            ]).then(() => {
-                console.log('Css loaded');
-            })
+            loadStyle(this, mtp_CourcePage2_Css)
+        ]).then(() => {
+            console.log('Css loaded');
+        })
             .catch(error => {
                 console.log({ error });
             });

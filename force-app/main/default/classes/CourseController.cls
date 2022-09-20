@@ -37,17 +37,17 @@ public without sharing class CourseController {
 
     // For Task and Sub Task
     @AuraEnabled
-    public static List<Course_Journey__c> gettask(String courseid, String tasktype){
+    public static List<Task__c> gettask(String courseid, String tasktype){
         try {
 
           User usr = [SELECT Id, ContactId, Contact.Name FROM User WHERE Id =: UserInfo.getUserId()];
 
-            // list<Task__c> tasklst = [SELECT Id, Name, Task__c, Type__c, Description__c, Course__c, Start_Time__c, End_Time__c, Approved__c, Current__c, Approved_By__c FROM Task__c WHERE Course__c =: courseid AND Type__c =: tasktype];
-            // return tasklst;
+            list<Task__c> tasklst = [SELECT Id, Name, Task__c, Type__c, Description__c, Course__c, Start_Time__c, End_Time__c, Approved__c, Current__c, Approved_By__c FROM Task__c WHERE Course__c =: courseid AND Type__c =: tasktype];
+            return tasklst;
 
-            List<Course_Journey__c> cjlist = new List<Course_Journey__c>();
-            cjlist = [SELECT Id, Name, Contact__c, Course__c, Task__c, Status__c, CreatedDate,Task__r.Name,Task__r.Description__c,Task__r.Start_Time__c,Task__r.End_Time__c FROM Course_Journey__c WHERE Course__c =: courseid AND Task__r.Type__c =: tasktype AND Contact__c =: usr.ContactId];
-            return cjlist;
+            // List<Course_Journey__c> cjlist = new List<Course_Journey__c>();
+            // cjlist = [SELECT Id, Name, Contact__c, Course__c, Task__c, Status__c, CreatedDate,Task__r.Name,Task__r.Description__c,Task__r.Start_Time__c,Task__r.End_Time__c FROM Course_Journey__c WHERE Course__c =: courseid AND Task__r.Type__c =: tasktype AND Contact__c =: usr.ContactId];
+            // return cjlist;
         } catch (Exception e) {
             System.debug(e.getMessage());
             return null;
