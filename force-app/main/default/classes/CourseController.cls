@@ -18,16 +18,16 @@ public without sharing class CourseController {
 
     // For SubCourse
     @AuraEnabled
-    public static List<AggregateResult> getsubcourse(String courseid){
+    public static list<Course__c> getsubcourse(String courseid){
         try {
             list<Course__c> courselst = [SELECT Id, Name, Course__c, Course_Lookup__c, Type__c FROM Course__c WHERE Course_Lookup__c =: courseid];
-            Set<Id> courseIds = new Set<Id>();
-            for(Course__c c: courselst){
-              courseIds.add(c.Id);
-            }
-            List<AggregateResult> cjlst = new List<AggregateResult>();
-            cjlst = [SELECT COUNT(Id), Course__r.Course__c s,Course__c g FROM Course_Journey__c  WHERE Course__c =: courseIds GROUP BY Course__r.Course__c,Course__c];
-            return cjlst;
+            // Set<Id> courseIds = new Set<Id>();
+            // for(Course__c c: courselst){
+            //   courseIds.add(c.Id);
+            // }
+            // List<AggregateResult> cjlst = new List<AggregateResult>();
+            // cjlst = [SELECT COUNT(Id), Course__r.Course__c s,Course__c g FROM Course_Journey__c  WHERE Course__c =: courseIds GROUP BY Course__r.Course__c,Course__c];
+            return courselst;
         } catch (Exception e) {
             System.debug(e.getMessage());
             return null;

@@ -74,6 +74,19 @@
     height: 50%;
 }
 
+.flex-div{
+    margin: 5% 10%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    color: #949191;
+}
+
+.white-bg{
+    background-color: white;
+    padding: 10px 5px;
+}
+
 .detailHeader {
     font-weight: 600;
 }

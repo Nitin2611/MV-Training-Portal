@@ -55,12 +55,10 @@ export default class Mtp_headerCmp extends NavigationMixin(LightningElement) {
         } else if (menuIte == "timesheet") {
             nameValue = 'Timesheet__c';
             urlValue += 'timesheet';
-        }
-        // else if(menuIte == "leave"){
-        //     nameValue = 'Leave__c';
-        //     urlValue += 'leave';
-        // } 
-        else if (menuIte == 'logout') {
+        } else if (menuIte == "leave") {
+            nameValue = 'Leave__c';
+            urlValue += 'leave';
+        } else if (menuIte == 'logout') {
             this[NavigationMixin.Navigate]({
                 type: 'comm__loginPage',
                 attributes: {

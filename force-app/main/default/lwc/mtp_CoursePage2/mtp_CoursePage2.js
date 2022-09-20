@@ -9,7 +9,7 @@ import mtp_CourcePage2_Css from '@salesforce/resourceUrl/mtp_CourcePage2_Css';
 // import getModuleData from '@salesforce/apex/mtp_CoursePage2Controller.getModuleData';
 import { NavigationMixin } from 'lightning/navigation';
 import { CurrentPageReference } from 'lightning/navigation';
-import getsubcourse from '@salesforce/apex/CourseController.getsubcourse';
+// import getsubcourse from '@salesforce/apex/CourseController.getsubcourse';
 
 export default class Mtp_CoursePage2 extends NavigationMixin(LightningElement) {
 

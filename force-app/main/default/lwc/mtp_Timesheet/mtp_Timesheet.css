@@ -61,6 +61,10 @@
     border-radius: 5px ;
 }
 
+.ts-left-div:hover{
+    cursor: copy !important;
+}
+
 .ts-date {
     width: 17%;
     padding-inline: 2%;

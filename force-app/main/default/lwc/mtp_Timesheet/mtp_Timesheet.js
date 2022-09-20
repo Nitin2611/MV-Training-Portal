@@ -101,6 +101,10 @@ export default class Mtp_Timesheet extends LightningElement {
 
     dateSelect(event){
         console.log({event});
+        console.log('day',event.currentTarget.dataset.value);
+
+        let ev = new CustomEvent('dayclick', {detail: event.currentTarget.dataset.value});
+        this.dispatchEvent(ev);
     }
 
     openTimesheetModal() {

@@ -44,12 +44,12 @@
                                 <div class="moduleContainer">
                                     <template for:each={subcourse} for:item="module">
 
-											<div class="moduleDiv" key={module.g} id={module.g}>
+											<div class="moduleDiv" key={module.Id} id={module.Id}>
 												<div class="imgSmallDiv">
 													<img src={module.image}>
 												</div>
 												<div class="contentDiv">
-													<h3 class="mainText"> {module.s} </h3>
+													<h3 class="mainText"> {module.Course__c} </h3>
 													<!-- <p class="subText">{module.Description__c}</p> -->
 													<div class="buttomContent">
 														<h1>18:00</h1>
@@ -63,7 +63,7 @@
 														</div>
 													</div>
 													<div class="btnDiv">
-														<button class="slds-button slds-button_neutral startBtn" data-id={module.g} onclick ={handleTaskPageNavigation} > Start </button>
+														<button class="slds-button slds-button_neutral startBtn" data-id={module.Id} onclick ={handleTaskPageNavigation} > Start </button>
 													</div>
 												</div>
 

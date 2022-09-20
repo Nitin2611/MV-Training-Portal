@@ -40,6 +40,42 @@ public without sharing class mtp_TimesheetController {
     }
 
     @AuraEnabled
+    public static dailytimewrap getDailyDate(String day){
+        List<mtp_Timesheet__c> timesheetList = new List<mtp_Timesheet__c>();
+        dailytimewrap returnData = new dailytimewrap();
+
+        Date d = Date.parse('09/13/2022');
+        timesheetList = [SELECT Id,Date__c,Start_Time__c,End_Time__c,Comments__c,User__c FROM mtp_Timesheet__c WHERE User__c =: UserInfo.getUserId() AND Date__c =: d];
+
+        List<Time> dateList = new List<Time>();
+        for(mtp_Timesheet__c t: timesheetList){
+            dateList.add(t.Start_Time__c);
+            dateList.add(t.End_Time__c);
+        }
+        dateList.sort();
+        System.debug('min date:---'+dateList[0]);
+        System.debug('max date:---'+dateList[dateList.size()-1]);
+
+        Boolean isSize = dateList.size() > 0;
+
+        returnData.startTimeString = isSize ? dateList[0].hour()+' H '+dateList[0].minute()+' M' : '0 H 0 M';
+        returnData.endTimeString = isSize ? dateList[dateList.size()-1].hour()+' H '+ dateList[dateList.size()-1].minute()+' M' : '0 H 0 M';
+        System.debug(timesheetList);
+        return returnData;
+    }
+
+    public class dailytimewrap{
+        @AuraEnabled
+        public String startTimeString {get;set;}
+        @AuraEnabled
+        public String endTimeString {get;set;}
+        @AuraEnabled
+        public String status {get;set;}
+        @AuraEnabled
+        public List<mtp_Timesheet__c> sheetList {get;set;}
+    }
+
+    @AuraEnabled
     public static Map<String,timesheetwrap> getTimesheet(){
         List<mtp_Timesheet__c> timesheetList = [SELECT Id,Date__c,Start_Time__c,End_Time__c,Comments__c FROM mtp_Timesheet__c WHERE User__c =: UserInfo.getUserId() ORDER BY Date__c DESC];
         Map<String,timesheetwrap> returnData = new Map<String,timesheetwrap>();

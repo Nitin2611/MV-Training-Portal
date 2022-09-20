@@ -11,7 +11,7 @@
 				<div class="slds-col slds-size_8-of-12">
 					<div class="courseDiv subContainer">
 						<h2 style="margin-bottom: 10px;">
-							Course Assignments
+							Work Done
 						</h2>
 						<div>
 							<lightning-tabset>
@@ -46,8 +46,13 @@
 										</template>
 									</div>
 								</lightning-tab>
-								<lightning-tab label="Completed">
-									<div class="brTabDiv"></div> Completed Course
+								<lightning-tab label="Approved">
+									<div class="brTabDiv"></div> Approved Timesheets
+									<div class="completedDiv">
+									</div>
+								</lightning-tab>
+								<lightning-tab label="Pending">
+									<div class="brTabDiv"></div> Pending Timesheet
 									<div class="completedDiv">
 									</div>
 								</lightning-tab>
@@ -57,11 +62,30 @@
 				</div>
 				<div class="slds-col slds-size_4-of-12">
 					<div class="passengerDetails">
-						<h2 class="slds-align_absolute-center slds-p-vertical_x-small"> Passenger Details</h2>
+						<h2 class="slds-align_absolute-center slds-p-vertical_x-small"> Timesheet Details</h2>
 						<div class="brDiv"></div>
 						<div class="overallProgress">
-							<p class="detailHeader slds-m-left_medium slds-m-top_medium "> Overall Progress</p>
-
+							<!-- <p class="detailHeader slds-m-left_medium slds-m-top_medium "> Overall Progress</p> -->
+							<div class="flex-div">
+								<p>Date</p>
+								<p>:</p>
+								<p class="white-bg">00/00/00</p>
+							</div>
+							<div class="flex-div">
+								<p>Start Time</p>
+								<p>:</p>
+								<p class="white-bg">00-00-00</p>
+							</div>
+							<div class="flex-div">
+								<p>End Time</p>
+								<p>:</p>
+								<p class="white-bg">00-00-00</p>
+							</div>
+							<div class="flex-div">
+								<p>Status</p>
+								<p>:</p>
+								<p class="white-bg">Pending</p>
+							</div>
 						</div>
 						<div class="brDiv"></div>
 						<h2 class="detailHeader slds-align_absolute-center slds-p-vertical_x-small"> Flight Details
