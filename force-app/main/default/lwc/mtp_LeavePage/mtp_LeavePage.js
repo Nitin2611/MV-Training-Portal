@@ -31,11 +31,11 @@ export default class Mtp_LeavePage extends NavigationMixin(LightningElement) {
             pageapiname = 'ApplyLeave__c';
             urlValue += 'course';
         } else if (name == "pending") {
-            pageapiname = 'PendingLeave__c';
+            pageapiname = 'pendingLeave__c';
             urlValue += 'leave/pendingleave';
         } else if (name == "history") {
-            pageapiname = 'History__c';
-            urlValue += 'leave';
+            pageapiname = 'leaveHistory__c';
+            urlValue += 'leave/leavehistory';
         }
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',

@@ -20,6 +20,9 @@ export default class Mtp_LeavePage2 extends LightningElement {
     @track endval;
 
     @track pendingLeaves = [];
+    @track approvedLeavesCount = 0;
+    @track pendingLeavesCount = 0;
+    @track rejectedLeavesCount = 0;
 
     @wire(getRecord, {
         recordId: USER_ID,
@@ -98,14 +101,32 @@ export default class Mtp_LeavePage2 extends LightningElement {
                 .then(result => {
                     this.pendingLeaves = result;
                     console.log({ result });
+                    var approvedCount = 0;
+                    var rejectedCount = 0;
+                    var pendingCount = 0;
 
                     for (const res of result) {
                         var sd = new Date(res.Start_Date__c);
                         var ed = new Date(res.End_Date__c);
                         res["startDateSTR"] = sd.toString().substring(0, 15);
                         res["endDateSTR"] = ed.toString().substring(0, 15);
+                        var statusTag = '';
+                        if (res.Status__c == 'Pending Approved') {
+                            statusTag = 'Awaiting';
+                            pendingCount += 1;
+                        } else if (res.Status__c == 'Approved') {
+                            statusTag = 'Approved';
+                            approvedCount += 1;
+                        } else if (res.Status__c == 'Rejected') {
+                            statusTag = 'Declined';
+                            rejectedCount += 1;
+                        }
+                        res["statusTag"] = statusTag;
 
                     }
+                    this.approvedLeavesCount = approvedCount;
+                    this.pendingLeavesCount = pendingCount;
+                    this.rejectedLeavesCount = rejectedCount;
 
                     // this.endSpinner();
                 })

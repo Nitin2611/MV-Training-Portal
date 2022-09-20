@@ -1,6 +1,7 @@
 /* General CSS */
 .container {
-    background-image: url('/resource/mtp_LeavePageBG');
+    /* background-image: url('/resource/mtp_LeavePageBG'); */
+    background-image: url('/resource/mtp_leaveHistory_bg');
     background-repeat: no-repeat;
     padding-bottom: 2%;
     background-size: 100% 47%;
@@ -391,4 +392,19 @@
 .leave-lst-main {
     overflow: auto;
     height: 85%;
+}
+
+.lev-right-tp[data-name^="Approved"].c-txt {
+    color: #1B7D03 !important;
+    background: rgba(46, 193, 10, 0.38) !important;
+}
+
+.lev-right-tp[data-name^="Awaiting"].c-txt {
+    color: #F4600D !important;
+    background: rgba(244, 180, 13, 0.33) !important;
+}
+
+.lev-right-tp[data-name^="Declined"].c-txt {
+    color: #DB0909 !important;
+    background: rgba(219, 9, 9, 0.31) !important;
 }
