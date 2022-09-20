@@ -36,7 +36,9 @@
                                     <p class="lv-duration">{pl.startDateSTR} - {pl.endDateSTR}</p>
                                     <p class="lv-type">{pl.Reason__c}</p>
                                 </div>
-                                <div class="lev-right-tp"><p>Awaiting</p></div>
+                                <div class="lev-right-tp">
+                                    <p>Awaiting</p>
+                                </div>
                             </div>
                             <div class="right-tckt-circle"></div>
                         </div>
@@ -74,20 +76,20 @@
                 <h1 class="header_Balance">Leave Balance</h1>
                 <div class="row_div5">
                     <div class="dis_left_01">
-                        <p class="pHead">Approved Leaves</p>
+                        <p class="pHead">Pending Leaves</p>
                     </div>
                     <div class="dis_right_01">
-                        <p class="pbody">05</p>
+                        <p class="pbody">{pendingLeavesCount}</p>
                     </div>
                 </div>
-                <div class="row_div6">
+                <!-- <div class="row_div6">
                     <div class="dis_left_01">
                         <p class="pHead">Rejected Leaves</p>
                     </div>
                     <div class="dis_right_01">
                         <p class="pbody">01</p>
                     </div>
-                </div>
+                </div> -->
                 <!-- <div class="slds-align_absolute-center">
               <input type="button" value="Continue Exploring" onclick={handleClick} class="submit_btn slds-m-left_x-small" >
             </div> -->

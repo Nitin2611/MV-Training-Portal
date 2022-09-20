@@ -20,6 +20,7 @@ export default class Mtp_LeavePage3 extends LightningElement {
     @track endval;
 
     @track pendingLeaves = [];
+    @track pendingLeavesCount = 0;
 
     @wire(getRecord, {
         recordId: USER_ID,
@@ -97,6 +98,7 @@ export default class Mtp_LeavePage3 extends LightningElement {
             pendingLeavesList()
                 .then(result => {
                     this.pendingLeaves = result;
+                    this.pendingLeavesCount = this.pendingLeaves.length;
                     console.log({ result });
 
                     for (const res of result) {
