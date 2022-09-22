@@ -31,13 +31,13 @@
                         <div class="leave-block" key={pl.Id}>
                             <div class="left-tckt-circle"></div>
                             <div class="main-lv-blck">
-                                <div>
+                                <div class="lv-info">
                                     <p class="lv-days">{pl.Day__c} Day Application</p>
                                     <p class="lv-duration">{pl.startDateSTR} - {pl.endDateSTR}</p>
                                     <p class="lv-type">{pl.Reason__c}</p>
                                 </div>
                                 <div class="lev-right-tp">
-                                    <p>Awaiting</p>
+                                    <p>{pl.Status__c}</p>
                                 </div>
                             </div>
                             <div class="right-tckt-circle"></div>

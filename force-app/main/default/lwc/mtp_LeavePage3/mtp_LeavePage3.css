@@ -355,6 +355,11 @@
     justify-content: space-between;
 }
 
+.lv-info {
+    /* width: 75%; */
+    width: 67%;
+}
+
 .lv-duration {
     font-style: normal;
     font-weight: 600;
@@ -365,6 +370,10 @@
 
 .lv-type {
     color: #F4B40D;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 85%;
 }
 
 .lv-days {
@@ -386,6 +395,7 @@
     align-items: center;
     display: flex;
     margin-right: 2%;
+    min-width: 150px;
 }
 
 .leave-lst-main {
