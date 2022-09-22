@@ -111,14 +111,14 @@ export default class Mtp_LeavePage2 extends LightningElement {
                         res["startDateSTR"] = sd.toString().substring(0, 15);
                         res["endDateSTR"] = ed.toString().substring(0, 15);
                         var statusTag = '';
-                        if (res.Status__c == 'Pending Approved') {
-                            statusTag = 'Awaiting';
+                        if (res.Status__c == 'Pending for Approval') {
+                            statusTag = 'Pending for Approval';
                             pendingCount += 1;
                         } else if (res.Status__c == 'Approved') {
                             statusTag = 'Approved';
                             approvedCount += 1;
                         } else if (res.Status__c == 'Rejected') {
-                            statusTag = 'Declined';
+                            statusTag = 'Rejected';
                             rejectedCount += 1;
                         }
                         res["statusTag"] = statusTag;
