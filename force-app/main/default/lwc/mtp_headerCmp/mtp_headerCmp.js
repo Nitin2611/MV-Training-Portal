@@ -25,7 +25,17 @@ export default class Mtp_headerCmp extends NavigationMixin(LightningElement) {
         this.icon2 = webURL + mvicon1;
         this.icon3 = webURL + mvicon2;
     }
-
+    eventPageNavigation(event) {
+        var urlValue = '/s/';
+        urlValue += 'newevents';
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'newEvents__c',
+                url: urlValue
+            },
+        });
+    }
     pageNavigation(event) {
 
         try {

@@ -14,18 +14,20 @@ public class LeaveController {
             l.Day__c = Daytype;
             l.Reason__c = Reason;
             l.Contact_Trainee__c = usr.ContactId;
-            // l.Contact_Trainee__c = '003N000001v6BzjIAE';
+            l.Status__c = 'Pending for Approval';
             insert l;
 
-            // String bodygmail = 'Hi '+Mentor+', <br/> Please approve Leave of ' +usr.Contact.Name+ '. Here is the Reason of their Leave. <br/><br/>'+Reason+ '<br/> Thanks' ;
+            String sd = String.valueOf(l.Start_Date__c).removeEnd('00:00:00');
+            String ed = String.valueOf(l.End_Date__c).removeEnd('00:00:00');
+
             String bodygmail = 'Hi '+Mentor+', <br/> <br/>';
             // bodygmail += 'Ravi is Taking Leave on <b>' +Startdate+ '</b> to the <b>' +Enddate+ '</b>. ';
-            bodygmail += +usr.Contact.Name+ ' is Taking Leave on <b>' +Startdate+ '</b> to the <b>' +Enddate+ '</b>. ';
-            bodygmail += 'So Please approve Leave of Ravi. ';
-            bodygmail += 'Here is the Reason of their Leave. <br/><br/>'+Reason ;
-            bodygmail += '<br/> <br/>Click here is for approve or reject leave. https://inspiration-drive-1434-dev-ed.lightning.force.com/lightning/r/Leave__c/' +l.Id+'/view';
-            bodygmail += '<br/> <br/> Thanks';
-            bodygmail += 'Mv Team';
+            bodygmail += +usr.Contact.Name+ ' is Taking Leave on <b>' +sd+ '</b> to the <b>' +ed+ '</b>. ';
+            bodygmail += 'So Please approve Leave of ' +usr.Contact.Name;
+            bodygmail += '. Here is the Reason of their Leave. <br/><br/> <b>'+Reason +'</b>';
+            bodygmail += '<br/> <br/> <a href=\"https://mvclouds5-dev-ed.my.salesforce.com/'+l.Id+'" target="_blank"> Click here </a> is for approve or reject leave.';
+            bodygmail += '<br/> <br/> Thanks,';
+            bodygmail += '<br/>Mv Team';
             
             String mentoremail = '';
             if(Mentor == 'Devansh'){

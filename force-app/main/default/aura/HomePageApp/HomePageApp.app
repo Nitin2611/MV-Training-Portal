@@ -2,5 +2,6 @@
 	<!--<c:mtp_HomePage></c:mtp_HomePage>	-->
     <!--<c:mtp_LeavePage></c:mtp_LeavePage>	-->
     <!--<c:mtp_ToastMessage></c:mtp_ToastMessage>-->
-    <c:mtp_Leave_Page></c:mtp_Leave_Page>
+    <!--<c:mtp_Leave_Page></c:mtp_Leave_Page>-->
+    <c:mtp_TaskPage></c:mtp_TaskPage>
 </aura:application>

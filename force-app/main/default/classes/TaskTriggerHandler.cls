@@ -28,6 +28,7 @@ public class TaskTriggerHandler {
     }
     
     public void AfterInsertEvent(){
+        insertmethod();
     }
     
     public void AfterUpdateEvent(){
@@ -40,5 +41,21 @@ public class TaskTriggerHandler {
     }
 
     public void AfterInsertChatterPost(){
+    }
+    
+    public void insertmethod(){
+        List<Contact> contactList = [SELECT Id,Name FROM Contact WHERE IsTrainee__c = true];
+        List<Course_Journey__c> courseJList = new List<Course_Journey__c>();
+        for(Task__c t: this.recordNewList){
+            for(Contact c: contactList){
+                Course_Journey__c cj = new Course_Journey__c();
+                cj.Contact__c = c.Id;
+                cj.Task__c = t.Id;
+                cj.Course__c = t.Course__c;
+                cj.Name = c.Name+' '+t.Name;
+                courseJList.add(cj);
+            }
+        }
+        insert courseJList;
     }
 }

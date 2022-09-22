@@ -59,6 +59,7 @@ export default class Mtp_TaskPage extends LightningElement {
         );
         setTimeout(() => {
             gettask({ courseid: this.courseid, tasktype: 'Task' })
+            // gettask({ courseid: 'a02N000000N3uqtIAB', tasktype: 'Task' })
                 .then(result => {
                     console.log({ result });
                     this.taskList = result;
@@ -151,7 +152,7 @@ export default class Mtp_TaskPage extends LightningElement {
             // this.isShowModal = true;
             this.taskName = event.target.name;
             var description = event.target.value;
-            description = description.replaceAll(/(<([^>]+)>)/ig, '');
+            // description = description.replaceAll(/(<([^>]+)>)/ig, '');
             this.taskDescription = description;
             this.taskId = event.target.id;
             let td = event.target.id.substring(0, 18);

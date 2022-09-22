@@ -49,8 +49,12 @@ public class LeaveTriggerHandler {
                 Contact con = [SELECT Id, Name, Email FROM Contact WHERE Id =: l.Contact_Trainee__c];
                 String sub = 'Leave '+l.Status__c;
                 String bodymail = 'Hi '+con.Name+ ',';
+
+                String sd = String.valueOf(l.Start_Date__c).removeEnd('00:00:00');
+                String ed = String.valueOf(l.End_Date__c).removeEnd('00:00:00');
+
                 bodymail += '<br/><br/>I hope you are doing well!';
-                bodymail += 'I have received your request for leave from'+l.Start_Date__c+ ' to ' +l.End_Date__c+'. This notification serves as confirmation that your request for leave has been '+l.Status__c;
+                bodymail += 'I have received your request for leave from <b>'+sd+ '</b> to <b>' +ed+'</b>. This notification serves as confirmation that your request for leave has been <b>'+l.Status__c +'</b>.';
                 bodymail += '<br/><br/><b>P.S:</b> The leaves that you take will extend your training period.';
                 bodymail += '<br/><br/>Have a great day ahead!';
                 bodymail += '<br/><br/>Regards,';

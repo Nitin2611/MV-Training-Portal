@@ -58,43 +58,56 @@ export default class Mtp_Leave_Page extends LightningElement {
         ];
     }
 
-    handleChange(event){
+    handleChange(event) {
 
         var selval = event.target.dataset.name;
-        console.log({selval});
-        if(selval == 'radio'){
+        console.log({ selval });
+        if (selval == 'radio') {
             this.dayval = event.target.value;
-        }else if(selval == 'mentor'){
+        } else if (selval == 'mentor') {
             this.mentorval = event.target.value;
-        }else if(selval == 'reason'){
+        } else if (selval == 'reason') {
             this.reasonval = event.target.value;
-        }else if(selval == 'start'){
+        } else if (selval == 'start') {
             this.startval = event.target.value;
-        }else if(selval == 'end'){
+        } else if (selval == 'end') {
             this.endval = event.target.value;
         }
-        console.log('dayval-->',this.dayval);
-        console.log('mentorval-->',this.mentorval);
-        console.log('reasonval-->',this.reasonval);
-        console.log('startval-->',this.startval);
-        console.log('endval-->',this.endval);
+        console.log('dayval-->', this.dayval);
+        console.log('mentorval-->', this.mentorval);
+        console.log('reasonval-->', this.reasonval);
+        console.log('startval-->', this.startval);
+        console.log('endval-->', this.endval);
     }
 
     applyleave() {
         console.log('applyleave');
-        createleave({Startdate: this.startval, Enddate: this.endval, Daytype: this.dayval, Mentor: this.mentorval, Reason: this.reasonval})
-        .then(result => {
-            console.log({result});
+        // console.log(this.dayval!= undefined &&  this.mentorval!= undefined && this.reasonval!= undefined && this.dayval!= '' &&  this.mentorval!= '' && this.reasonval!= '');
+        if (this.startval != undefined && this.startval != '' && this.endval != undefined && this.endval != '' && this.dayval != undefined && this.mentorval != undefined && this.reasonval != undefined && this.dayval != '' && this.mentorval != '' && this.reasonval != '') {
+            createleave({ Startdate: this.startval, Enddate: this.endval, Daytype: this.dayval, Mentor: this.mentorval, Reason: this.reasonval })
+                .then(result => {
+                    console.log({ result });
+                    console.log(this.endval + '---' + this.startval);
+                    if (result == 'Success') {
+                        this.template.querySelector('c-mtp_-toast-message').showToast('success', 'Leave applied Successfully!!', 3000);
+                    } else {
+                        this.template.querySelector('c-mtp_-toast-message').showToast('error', 'Something went wrong!!', 3000);
+                    }
 
-            if(result == 'Success'){
-                this.template.querySelector('c-mtp_-toast-message').showToast('success', 'Leave applied Successfully!!!', 3000);
-            }else{
-                this.template.querySelector('c-mtp_-toast-message').showToast('error', 'Something went wrong!!!', 3000);
-            }
+                })
+                .catch(error => {
+                    console.log({ error });
+                });
 
-        })
-        .catch(error => {
-            console.log({ error });
-        });
+        } else if (this.startval == undefined || this.startval == '' || this.endval == undefined || this.endval == '') {
+            this.template.querySelector('c-mtp_-toast-message').showToast('error', 'Uh oh, Please Select Date !!', 3000);
+        } else if (this.dayval == undefined || this.dayval == '') {
+            this.template.querySelector('c-mtp_-toast-message').showToast('error', 'Uh oh, Please Select Day Type !!', 3000);
+        } else if (this.mentorval == undefined || this.mentorval == '') {
+            this.template.querySelector('c-mtp_-toast-message').showToast('error', 'Uh oh, Please Select Your Mentor !!', 3000);
+        } else if (this.reasonval == undefined || this.reasonval == '') {
+            this.template.querySelector('c-mtp_-toast-message').showToast('error', 'Uh oh, Please Give Reason for Leave !!', 3000);
+        }
+
     }
 }
