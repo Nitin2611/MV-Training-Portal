@@ -4,8 +4,10 @@ import NAME_FIELD from '@salesforce/schema/User.Name';
 import { getRecord } from 'lightning/uiRecordApi';
 import middleflight from '@salesforce/resourceUrl/mtp_leaveflighticon';
 import createleave from '@salesforce/apex/LeaveController.createleave';
+import { NavigationMixin } from 'lightning/navigation';
 
-export default class Mtp_Leave_Page extends LightningElement {
+
+export default class Mtp_Leave_Page extends NavigationMixin(LightningElement) {
     @api recordId;
     leaveTypevalue;
     dayTypevalue;
@@ -90,6 +92,21 @@ export default class Mtp_Leave_Page extends LightningElement {
                     console.log(this.endval + '---' + this.startval);
                     if (result == 'Success') {
                         this.template.querySelector('c-mtp_-toast-message').showToast('success', 'Leave applied Successfully!!', 3000);
+                        setTimeout(() => {
+
+                            var nameValue = 'Leave__c';
+                            var urlValue = '/s/';
+                            urlValue += 'leave';
+                            this[NavigationMixin.Navigate]({
+                                type: 'comm__namedPage',
+                                attributes: {
+                                    name: nameValue,
+                                    url: urlValue
+                                },
+
+                            });
+                        }, 2000);
+
                     } else {
                         this.template.querySelector('c-mtp_-toast-message').showToast('error', 'Something went wrong!!', 3000);
                     }
@@ -109,5 +126,18 @@ export default class Mtp_Leave_Page extends LightningElement {
             this.template.querySelector('c-mtp_-toast-message').showToast('error', 'Uh oh, Please Give Reason for Leave !!', 3000);
         }
 
+    }
+    cancelLeave() {
+        var nameValue = 'Leave__c';
+        var urlValue = '/s/';
+        urlValue += 'leave';
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: nameValue,
+                url: urlValue
+            },
+
+        });
     }
 }
