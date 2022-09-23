@@ -59,7 +59,7 @@ export default class Mtp_TaskPage extends LightningElement {
         );
         setTimeout(() => {
             gettask({ courseid: this.courseid, tasktype: 'Task' })
-            // gettask({ courseid: 'a02N000000N3uqtIAB', tasktype: 'Task' })
+                // gettask({ courseid: 'a02N000000N3uqtIAB', tasktype: 'Task' })
                 .then(result => {
                     console.log({ result });
                     this.taskList = result;
@@ -144,9 +144,16 @@ export default class Mtp_TaskPage extends LightningElement {
             console.log('start', event.currentTarget.dataset.start);
             console.log('inpro', event.currentTarget.dataset.inpro);
             console.log('como', event.currentTarget.dataset.completed);
-            this.isStart = event.currentTarget.dataset.start;
-            this.isEnd = event.currentTarget.dataset.inpro;
-            this.isCompleted = event.currentTarget.dataset.completed;
+
+            console.log({ event });
+            var ct = JSON.parse(JSON.stringify(event.currentTarget.dataset));
+            console.log({ ct });
+
+            // for Converting String to Boolean Value ('true' ==> true)
+
+            this.isStart = event.currentTarget.dataset.start === 'true';
+            this.isEnd = event.currentTarget.dataset.inpro === 'true';
+            this.isCompleted = event.currentTarget.dataset.completed === 'true';
 
             this.isSpinner = true;
             // this.isShowModal = true;
